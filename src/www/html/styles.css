@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap');
+
+.loaded * {
+    font-family: 'Karla', sans-serif;
+    transition: 0.8s;
+}
+
+body, html {
+    background-color: #1d1d1d;
+    min-width: 280px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */    
+}
+
+body {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+body.desktop .card .card-desc {
+    min-height: 260px !important;
+}
+body.tablet .card .card-desc {
+    min-height: 260px !important;
+}
+body.mobile .card .card-desc {
+    min-height: 0px !important;
+    margin-bottom: 24px;
+}
+
+
+.row {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.col {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+
+.card {
+    border: 0px;
+    cursor: pointer;
+    transition: 0.6s ease-out;
+    padding: 0;
+    margin: 0;
+}
+.card.selected {}
+.card .card-spacer {
+    transition: 0.2s;
+}
+.card .card-title {
+    transition: 0.4s;
+    font-size: 32px;
+    opacity: 0;
+    font-weight: 700;
+}
+.loaded .card .card-title {
+    opacity: 0.8;
+}
+.card .card-image {
+    overflow: hidden;
+}
+.card .card-image img {
+    height: 100%;
+    width: 100%;
+    padding: 20%;
+    opacity: 0;
+    transition: 0.4s ease-out;
+}
+.loaded .card-image img {
+    opacity: 1;
+}
+.card .card-content {
+    transition: 0.4s ease-out;
+    opacity: 0;
+    font-weight: 500;
+}
+.loaded .card .card-content {
+    opacity: 0.7;
+}
+.card:hover .card-content {
+    opacity: 1;
+}
+.card.selected .card-content {
+    opacity: 1;
+}

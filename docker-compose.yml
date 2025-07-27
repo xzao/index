@@ -1,0 +1,12 @@
+services:
+
+  index:
+    build: .
+    container_name: services-index
+    image: services/index
+    ports:
+      - 8000:80
+    volumes:
+      - ./var:/etc/index
+      - ./var/images/logos:/var/www/html/images/logos
+    restart: unless-stopped
