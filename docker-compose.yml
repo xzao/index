@@ -10,4 +10,4 @@ services:
     restart: unless-stopped
     volumes:
       - ${INDEX_VOLUME_ETC:-./volumes/etc/index}:/etc/index
-      - ${INDEX_VOLUME_VAR:-./volumes/var/www/html/images/logos}:/var/www/html/images/logos
+      - ${INDEX_VOLUME_VAR_IMAGES_ICONS:-./volumes/var/www/html/images/icons}:/var/www/html/images/icons
