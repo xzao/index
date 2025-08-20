@@ -16,6 +16,10 @@
         echo '            </div>';
         echo '            <div class="card-content darken">';
         echo '                <div class="card-title">' . $app['title'] . '</div>';
+        echo '                <p class="card-tagline">';
+        echo '                   ' . $app['tagline'] . '';
+        echo '                </p>';
+        echo '                <br />';
         echo '                <p class="card-desc">';
         echo '                   ' . $app['description'] . '';
         echo '                </p>';
