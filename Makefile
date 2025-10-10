@@ -5,12 +5,6 @@
 
 
 #
-#	dir[s]
-#
-$(shell mkdir -p var)
-
-
-#
 #	env[s]
 #
 $(shell test -f .env || cp .env.sample .env)
@@ -21,6 +15,9 @@ export $(shell sed 's/=.*//' .env)
 #
 #	target[s]
 #
+build:
+	docker-compose build
+
 logs:
 	docker-compose logs -f
 

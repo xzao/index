@@ -3,8 +3,8 @@
     function app_to_html($app) {
 
         # fallback logo
-        if( ! file_exists(WWW . '/images/logos/' . $app['logo']) ){
-            $app['logo'] = 'base.app.index.fallback.png';
+        if( ! file_exists(WWW . '/images/icons/' . $app['logo']) ){
+            $app['logo'] = 'base.fallback.png';
         }
 
         # print html
@@ -12,10 +12,14 @@
         echo '    <a href=' . $app['link'] . '>                        ';
         echo '        <div class="card" style="'. styles_to_style($app['styles']) . '">';
         echo '            <div class="card-image darken">';
-        echo '                <img class="card-image-logo" src="images/logos/' . $app['logo'] . '">';
+        echo '                <img class="card-image-logo" src="images/icons/' . $app['logo'] . '">';
         echo '            </div>';
         echo '            <div class="card-content darken">';
         echo '                <div class="card-title">' . $app['title'] . '</div>';
+        echo '                <p class="card-tagline">';
+        echo '                   ' . $app['tagline'] . '';
+        echo '                </p>';
+        echo '                <br />';
         echo '                <p class="card-desc">';
         echo '                   ' . $app['description'] . '';
         echo '                </p>';
@@ -58,7 +62,17 @@
     }    
 
     function get_file($disk) {
-        return $disk.'/index.'.$_SERVER['SERVER_NAME'].'.json';
+
+        # file set
+        $file = $disk.'/servers/'.$_SERVER['SERVER_NAME'].'.json';
+
+        # file check exist[s] / fallback
+        if( ! file_exists($file) ){ 
+            $file = $disk.'/default.json';
+        }
+
+        # return
+        return $file;
     }
 
     function load_file($file) {

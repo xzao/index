@@ -5,7 +5,6 @@ FROM php:8.2-apache
 
 
 #
-#   src
+#   expose
 #
-ADD src/www/html /var/www/html
 EXPOSE 80
