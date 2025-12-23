@@ -2,9 +2,15 @@
 
     function app_to_html($app) {
 
-        # fallback logo
-        if( ! file_exists(WWW . '/images/icons/' . $app['logo']) ){
-            $app['logo'] = 'base.fallback.png';
+        # fallback icon check
+        if( ! isset($app['icon']) ){ $app['icon'] = array(); }
+        if( ! isset($app['icon']['category']) ){ $app['icon']['category'] = 'default'; }
+        if( ! isset($app['icon']['name'])     ){ $app['icon']['name'] = 'fallback'; }
+
+        # fallback icon check
+        if( ! file_exists(WWW . '/images/icons/' . $app['icon']['category'] . '/' . $app['icon']['name'] . '.png') ){
+            $app['icon']['category'] = 'default';
+            $app['icon']['name']     = 'fallback';
         }
 
         # print html
@@ -12,7 +18,7 @@
         echo '    <a href=' . $app['link'] . '>                        ';
         echo '        <div class="card" style="'. styles_to_style($app['styles']) . '">';
         echo '            <div class="card-image darken">';
-        echo '                <img class="card-image-logo" src="images/icons/' . $app['logo'] . '">';
+        echo '                <img class="card-image-logo" src="images/icons/' . $app['icon']['category'] . '/' . $app['icon']['name'] . '.png">';
         echo '            </div>';
         echo '            <div class="card-content darken">';
         echo '                <div class="card-title">' . $app['title'] . '</div>';
@@ -54,12 +60,27 @@
 
         # iterate
         foreach( $apps as $key => $app ){
+
+            # fill not implemented
+
         }
 
         # return
         return $apps;
 
     }    
+
+    function get_debug() {
+
+        # return true
+        if (isset($_ENV['INDEX_DEBUG']) && filter_var($_ENV['INDEX_DEBUG'], FILTER_VALIDATE_BOOLEAN)) {
+            return true;
+        }
+
+        # return
+        return false;
+
+    }
 
     function get_file($disk) {
 
@@ -73,6 +94,37 @@
 
         # return
         return $file;
+    }
+
+    function get_protocol() {
+
+        # default http
+        $protocol = 'http';
+
+        # check for https
+        if( ! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ){ 
+            $protocol = 'https';
+        }
+
+        # return
+        return $protocol;
+        
+    }
+
+    function get_title() {
+        if( isset($_SERVER['HTTP_HOST']) ){
+            $title = explode(':', $_SERVER['HTTP_HOST'])[0];
+            $title = explode('.', $title);
+            if( count($title) > 1 ){
+                array_pop($title);
+            }
+            foreach( $title as $key => $value ){
+                $title[$key] = ucfirst($value);
+            }
+            $title = implode(" | ", $title);
+        } else {
+            return "Index";
+        }     
     }
 
     function load_file($file) {

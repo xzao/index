@@ -10,5 +10,5 @@ services:
     restart: unless-stopped
     volumes:
       - ${INDEX_VOLUME_ETC:-./volumes/etc/index}:/etc/index
-      - ${INDEX_VOLUME_VAR:-./src/www/html}:/var/www/html
-      - ${INDEX_VOLUME_VAR_IMAGES_ICONS:-./volumes/var/www/html/images/icons}:/var/www/html/images/icons
+      - ${INDEX_VOLUME_SRC:-./src}:/opt/index
+      - ${INDEX_VOLUME_SRC_ICONS:-./volumes/opt/index/public/images/icons/custom}:/opt/index/public/images/icons/custom

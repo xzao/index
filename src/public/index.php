@@ -1,9 +1,9 @@
-<?php require_once(__DIR__.'/config.php');    ?>
-<?php require_once(__DIR__.'/functions.php'); ?>
+<?php require_once(__DIR__.'/../includes/functions.php'); ?>
+<?php require_once(__DIR__.'/../config.php');             ?>
 <?php
 
     # app[s]
-    $file = get_file(DISK);
+    $file = get_file(ETC);
     $apps = load_file($file);
     $apps = fill_defaults($apps);
     $apps = fill_dynamics($apps);
@@ -56,12 +56,6 @@
 
                     <!-- app -->
                     <?php app_to_html($app); ?>
-
-                <?php } ?>
-                <?php if( EDIT ){ ?>
-
-                    <!-- app - edit -->
-                    <?php app_to_html(PACKAGE_DEFAULTS_ADD); ?>
 
                 <?php } ?>
             </div>
