@@ -2,13 +2,11 @@ services:
 
   index:
     build: .
-    container_name: services-index
-    hostname: ${INDEX_HOSTNAME:-services-index}    
-    image: services/index:${INDEX_VERSION:-latest}
+    container_name: ${INDEX_CONTAINER_NAME:-index}    
+    hostname: ${INDEX_HOSTNAME:-index}    
+    image: ${INDEX_IMAGE:-index}:${INDEX_VERSION:-latest}
     ports:
       - 8000:80
     restart: unless-stopped
     volumes:
-      - ${INDEX_VOLUME_ETC:-./volumes/etc/index}:/etc/index
-      - ${INDEX_VOLUME_SRC:-./src}:/opt/index
-      - ${INDEX_VOLUME_SRC_ICONS:-./volumes/opt/index/public/images/icons/custom}:/opt/index/public/images/icons/custom
+      - ${INDEX_VOLUME_ETC_INDEX:-./mnt/etc/index}:/etc/index

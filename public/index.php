@@ -1,25 +1,16 @@
-<?php require_once(__DIR__.'/../includes/functions.php'); ?>
-<?php require_once(__DIR__.'/../config.php');             ?>
+<?php require_once(__DIR__ . '/../src/functions.php'); ?>
+<?php require_once(__DIR__ . '/../src/config.php');    ?>
 <?php
 
-    # app[s]
-    $file = get_file(ETC);
-    $apps = load_file($file);
-    $apps = fill_defaults($apps);
-    $apps = fill_dynamics($apps);
+    # config
+    $config_file = get_config_file(ETC);
+    $config      = load_config($config_file);
+
+    # site[s]
+    $sites = get_sites($config);
 
     # debug
-    if( DEBUG ){
-        echo '<pre>';
-        echo '<hr />';
-        echo '<h1>APPS</h1>';
-        print_r($apps);       
-        echo '<hr />';        
-        echo '<h1>SERVER</h1>';
-        print_r($_SERVER);
-        echo '<hr />';
-        die;
-    }
+    if( DEBUG ){ print_debug($config, $sites); }
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +22,7 @@
 
         <!-- meta[s] -->
         <meta name="viewport"           content="width=device-width, initial-scale=1">
-        <meta name="description"        content="<?php echo TITLE; ?>">
+        <meta name="description"        content="<?php echo DESCRIPTION; ?>">
         <meta name="theme-color"        content="#1d1d1d">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta property="og:title"       content="<?php echo TITLE; ?>">
@@ -52,10 +43,10 @@
         <!-- container -->
         <div class="page">
             <div class="row">
-                <?php foreach( $apps as $app ){ ?>
+                <?php foreach( $sites as $site ){ ?>
 
-                    <!-- app -->
-                    <?php app_to_html($app); ?>
+                    <!-- site -->
+                    <?php get_site_html($site); ?>
 
                 <?php } ?>
             </div>

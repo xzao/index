@@ -2,8 +2,5 @@
 .env*
 !.env.sample
 
-# public
-src/public/images
-
-# volumes
-volumes
+# mnt
+mnt

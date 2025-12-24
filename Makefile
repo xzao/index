@@ -16,20 +16,29 @@ export $(shell sed 's/=.*//' .env)
 #	target[s]
 #
 build:
-	docker-compose build
+	@docker-compose build
+
+develop:
+	@php -S 0.0.0.0:8000 -t public
+
+install:
+	ln -sf $(shell pwd)/mnt/etc/index /etc/index
 
 logs:
-	docker-compose logs -f
+	@docker-compose logs -f
 
 restart:
 	make stop
 	make start
 
 shell:
-	docker exec -it services-index bash
+	@docker exec -it ${INDEX_CONTAINER_NAME} bash
 
 start:
-	docker-compose up -d --build
+	@docker-compose up -d --build
 
 stop:
-	docker-compose down
+	@docker-compose down
+
+upgrade:
+	@docker-compose up -d --build --force-recreate
