@@ -27,6 +27,21 @@
             return true;
         }
 
+        # set fallback
+        if( ! isset($site['image']) ){
+            $site['image'] = array();
+        }
+
+        # set fallback type
+        if( ! isset($site['image']['name']) ){
+            $site['image']['name'] = strtolower($site['id']);
+        }
+
+        # set fallback type
+        if( ! isset($site['image']['type']) ){
+            $site['image']['type'] = 'svg';
+        }
+
         # return image by type
         switch( $site['image']['type'] ){
             case 'svg':
