@@ -6,19 +6,26 @@
     define( 'ETC',          realpath('/etc/index')                 );
     define( 'HOST',         explode(':', $_SERVER['HTTP_HOST'])[0] );
     define( 'IGNORE',       array('.', '..', '.gitignore')         );
-    define( 'PROTOCOL',     get_protocol()                         ); 
+    define( 'PROTOCOL',     get_protocol()                         );
     define( 'ROOT',         realpath(__DIR__ .  '/..')             );
     define( 'SRC',          realpath(__DIR__)                      );
     define( 'TITLE',        get_title()                            );
     define( 'WWW',          realpath(__DIR__ . '/public')          );
 
-    # config package default[s]
-    define( 'PACKAGE_DEFAULTS', array(
+    # config default image
+    define( 'DEFAULT_IMAGE', array(
+        'name' => 'default',
+        'path' => '',
+        'type' => 'svg'
+    ));
+
+    # config default site
+    define( 'DEFAULT_SITE', array(
         'classes' => array(),
         'logo'    => 'default.png',
         'styles'  => array(
             'background-color' => 'white',
-            'border-color'     => 'white',            
+            'border-color'     => 'white',
             'color'            => '#212427'
         )
-    )); 
+    ));

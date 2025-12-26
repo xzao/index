@@ -23,6 +23,9 @@ develop:
 
 install:
 	ln -sf $(shell pwd)/mnt/etc/index /etc/index
+	@if [ ! -d 'public/vendor/selfhst-icons' ]; then \
+		cd public/vendor && git clone --depth 1 --single-branch https://github.com/selfhst/icons selfhst-icons; \
+	fi
 
 logs:
 	@docker-compose logs -f

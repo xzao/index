@@ -6,19 +6,75 @@
 
     function fill_site_defaults($config, $site) {
 
-        # fill site w/ config defaults
+        # fill site with etc defaults
         if( isset($config['defaults']['site']) ){
             $site = array_merge($config['defaults']['site'], $site);
         }
 
 
-        # fill site w/ global defaults
-        $site = array_merge(PACKAGE_DEFAULTS, $site);
+        # fill site with config defautls
+        $site = array_merge(DEFAULT_SITE, $site);
 
         # return
         return $site;
 
     }
+
+    function fill_site_image($config, $site) {
+
+        # check exists
+        if( isset($site['image']) && isset($site['image']['path']) ){
+            return true;
+        }
+
+        # return image by type
+        switch( $site['image']['type'] ){
+            case 'svg':
+                return fill_site_image_svg($config, $site);
+        }
+
+        # return default
+        return DEFAULT_IMAGE;
+
+    }
+
+    function fill_site_image_svg($config, $site) {
+
+        # set piece[s]
+        $base = __DIR__ . '/../public';
+        $core = 'vendor/selfhst-icons/svg/' . $site['image']['name'];
+        $path = null;
+
+        # set option[s]
+        $options = array();
+
+        # prepare
+        if( isset($site['image']['theme']) ){
+            $options[] = $core . '-' . $site['image']['theme'] .  '.svg';
+        }
+        $options[] = $core            .  '.svg';
+        $options[] = $core . '-light' .  '.svg';
+        $options[] = $core . '-dark'  .  '.svg';
+
+        # check
+        foreach( $options as $option ){
+            if( file_exists($base . '/' .$option) ){
+                $path = $option;
+                break;
+            }
+        }
+
+        # set path
+        if( $path !== null ){
+            $site['image']['path'] = $path;
+        } else {
+            $site['image'] = DEFAULT_IMAGE;
+        }
+
+        # return
+        return $site;
+
+    }    
 
     function fill_site_dynamics($sites) {
 
@@ -85,23 +141,12 @@
 
     function get_site_html($site) {
 
-        # fallback icon check
-        if( ! isset($site['icon']) ){ $site['icon'] = array(); }
-        if( ! isset($site['icon']['category']) ){ $site['icon']['category'] = 'default'; }
-        if( ! isset($site['icon']['name'])     ){ $site['icon']['name'] = 'fallback'; }
-
-        # fallback icon check
-        if( ! file_exists(WWW . '/images/icons/' . $site['icon']['category'] . '/' . $site['icon']['name'] . '.png') ){
-            $site['icon']['category'] = 'default';
-            $site['icon']['name']     = 'fallback';
-        }
-
         # print html
         echo '<div class="col s12 m12 l6 xl4 ' . classes_to_class($site['classes']) . '">';
         echo '    <a href=' . $site['link'] . '>                        ';
         echo '        <div class="card" style="'. styles_to_style($site['styles']) . '">';
         echo '            <div class="card-image darken">';
-        echo '                <img class="card-image-logo" src="images/icons/' . $site['icon']['category'] . '/' . $site['icon']['name'] . '.png">';
+        echo '                <img class="card-image-logo" src="' . $site['image']['path'] . '">';
         echo '            </div>';
         echo '            <div class="card-content darken">';
         echo '                <div class="card-title">' . $site['title'] . '</div>';
@@ -135,6 +180,9 @@
             
             # fill defaults
             $site = fill_site_defaults($config, $site);
+
+            # fill image
+            $site = fill_site_image($config, $site);
 
             # append
             $sites[] = $site;
