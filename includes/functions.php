@@ -84,7 +84,7 @@ function fill_site_image($config, $site) {
 function fill_site_image_svg($config, $site) {
 
     # set piece[s]
-    $base = __DIR__ . '/../public';
+    $base = __DIR__;
     $core = 'vendor/selfhst-icons/svg/' . $site['image']['name'];
     $path = null;
 
@@ -170,7 +170,7 @@ function generate_styles_from_site_svg($site) {
     }
 
     # build full path
-    $svg_path = __DIR__ . '/../public/' . $site['image']['path'];
+    $svg_path = __DIR__ . '/' . $site['image']['path'];
 
     # check file exists
     if( ! file_exists($svg_path) ){
@@ -218,7 +218,6 @@ function generate_styles_from_site_svg($site) {
     $b = hexdec(substr($hex, 4, 2));
 
     # generate slightly darker background for blended look (80% of original)
-    # close enough to blend with icon, dark enough to provide subtle distinction
     $darken_factor = 0.80;
     $bg_r = round($r * $darken_factor);
     $bg_g = round($g * $darken_factor);
@@ -293,6 +292,52 @@ function get_protocol() {
     # return
     return $protocol;
     
+}
+
+function get_site_image_data_uri($site) {
+
+    # check if image path exists
+    if( ! isset($site['image']['path']) || empty($site['image']['path']) ){
+        return '';
+    }
+
+    # build full path
+    $svg_full_path = __DIR__ . '/' . $site['image']['path'];
+
+    # check file exists
+    if( ! file_exists($svg_full_path) ){
+        return $site['image']['path'];
+    }
+
+    # read file content
+    $content = file_get_contents($svg_full_path);
+    if( $content === false ){
+        return $site['image']['path'];
+    }
+
+    # determine mime type
+    $mime_type = 'image/svg+xml';
+    if( isset($site['image']['type']) ){
+        switch( $site['image']['type'] ){
+            case 'png':
+                $mime_type = 'image/png';
+                break;
+            case 'jpg':
+            case 'jpeg':
+                $mime_type = 'image/jpeg';
+                break;
+            case 'webp':
+                $mime_type = 'image/webp';
+                break;
+        }
+    }
+
+    # encode and return data uri
+    $base64 = base64_encode($content);
+
+    # return
+    return 'data:' . $mime_type . ';base64,' . $base64;
+
 }
 
 function get_sites($config) {
@@ -398,13 +443,13 @@ function print_debug($config, $sites) {
 #   render[er]s
 #
 function render_site_html($site, $html = '') {
-    
+
     # html build
     $html .= '<div class="col s12 m12 l6 xl4 ' . collapse_classes_to_class($site['classes']) . '">';
     $html .= '    <a href=' . $site['link'] . '>                        ';
     $html .= '        <div class="card" style="'. collapse_styles_to_style($site['styles']) . '">';
     $html .= '            <div class="card-image darken">';
-    $html .= '                <img class="card-image-logo" src="' . $site['image']['path'] . '">';
+    $html .= '                <img class="card-image-logo" src="' . get_site_image_data_uri($site) . '">';
     $html .= '            </div>';
     $html .= '            <div class="card-content darken">';
     $html .= '                <div class="card-title">' . $site['title'] . '</div>';

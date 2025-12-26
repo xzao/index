@@ -23,8 +23,9 @@ develop:
 
 install:
 	ln -sf $(shell pwd)/mnt/etc/index /etc/index
-	@if [ ! -d 'public/vendor/selfhst-icons' ]; then \
-		cd public/vendor && git clone --depth 1 --single-branch https://github.com/selfhst/icons selfhst-icons; \
+	@if [ ! -d 'includes/vendor/selfhst-icons' ]; then \
+		mkdir -p 'includes/vendor' ; \
+		cd includes/vendor && git clone --depth 1 --single-branch https://github.com/selfhst/icons selfhst-icons; \
 	fi
 
 logs:
