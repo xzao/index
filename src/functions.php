@@ -11,7 +11,6 @@
             $site = array_merge($config['defaults']['site'], $site);
         }
 
-
         # fill site with config defautls
         $site = array_merge(DEFAULT_SITE, $site);
 
@@ -91,19 +90,123 @@
 
     }    
 
-    function fill_site_dynamics($sites) {
+    function fill_site_styles($config, $site) {
 
-        # iterate
-        foreach( $sites as $key => $site ){
+        # check exists
+        if( isset($site['styles']) ){
+            return $site;
+        }
 
-            # fill not implemented
+        # set styles
+        $styles = generate_styles_from_site($site);
 
+        # fill
+        $site['styles'] = $styles;
+
+        # return
+        return $site;
+
+    }
+
+    function generate_styles_from_site($site) {
+        
+        # set styles
+        $styles = null;
+
+        # generate
+        switch( $site['image']['type'] ){
+            case 'svg':
+                $styles = generate_styles_from_site_svg($site);
+        }
+
+        # default
+        if( $styles === null ){
+            $styles = DEFAULT_STYLES;
         }
 
         # return
-        return $sites;
+        return $styles;
 
-    }    
+    }
+
+    function generate_styles_from_site_svg($site) {
+
+        # check path exists
+        if( ! isset($site['image']['path']) || empty($site['image']['path']) ){
+            return DEFAULT_STYLES;
+        }
+
+        # build full path
+        $svg_path = __DIR__ . '/../public/' . $site['image']['path'];
+
+        # check file exists
+        if( ! file_exists($svg_path) ){
+            return DEFAULT_STYLES;
+        }
+
+        # read svg content
+        $svg_content = file_get_contents($svg_path);
+        if( $svg_content === false ){
+            return DEFAULT_STYLES;
+        }
+
+        # extract colors from svg using regex
+        $colors = array();
+        $patterns = array(
+            '/fill="(#[0-9A-Fa-f]{6})"/i',
+            '/fill:(#[0-9A-Fa-f]{6})/i',
+            '/stroke="(#[0-9A-Fa-f]{6})"/i',
+            '/stroke:(#[0-9A-Fa-f]{6})/i'
+        );
+
+        foreach( $patterns as $pattern ){
+            if( preg_match_all($pattern, $svg_content, $matches) ){
+                foreach( $matches[1] as $color ){
+                    $color = strtoupper($color);
+                    # skip common neutrals
+                    if( $color !== '#FFFFFF' && $color !== '#000000' && $color !== '#FFF' && $color !== '#000' ){
+                        if( ! in_array($color, $colors) ){
+                            $colors[] = $color;
+                        }
+                    }
+                }
+            }
+        }
+        
+        # check if we found any colors
+        if( empty($colors) ){
+            return DEFAULT_STYLES;
+        }
+
+        # get dominant color (first color found) and convert to RGB
+        $hex = ltrim($colors[0], '#');
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+
+        # generate lighter background by blending with white (85% lighter)
+        $white = 255;
+        $bg_r = round($r + ($white - $r) * 0.85);
+        $bg_g = round($g + ($white - $g) * 0.85);
+        $bg_b = round($b + ($white - $b) * 0.85);
+        
+        # clamp and convert to hex
+        $bg_r = max(0, min(255, $bg_r));
+        $bg_g = max(0, min(255, $bg_g));
+        $bg_b = max(0, min(255, $bg_b));
+        $bg_color = sprintf("#%02X%02X%02X", $bg_r, $bg_g, $bg_b);
+
+        # determine text color based on background brightness
+        $brightness = ($bg_r * 299 + $bg_g * 587 + $bg_b * 114) / 1000;
+        $text_color = ($brightness > 128) ? '#2B2B2B' : '#F5F5F5';
+
+        # return styles
+        return array(
+            "background-color" => $bg_color,
+            "color" => $text_color
+        );
+
+    }
 
     function get_config_file($disk) {
 
@@ -198,6 +301,9 @@
 
             # fill image
             $site = fill_site_image($config, $site);
+
+            # fill styles
+            $site = fill_site_styles($config, $site);
 
             # append
             $sites[] = $site;

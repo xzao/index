@@ -22,10 +22,11 @@
     # config default site
     define( 'DEFAULT_SITE', array(
         'classes' => array(),
-        'logo'    => 'default.png',
-        'styles'  => array(
-            'background-color' => 'white',
-            'border-color'     => 'white',
-            'color'            => '#212427'
-        )
+        'logo'    => 'default.png'
+    ));
+
+    # config default styles
+    define( 'DEFAULT_STYLES', array(
+        "background-color" => "#1C2833",
+        "color" => "#F5F5F5"
     ));
