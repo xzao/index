@@ -159,7 +159,7 @@ function filter_sites_by_domain($sites, $domain = null) {
     # filter sites
     foreach( $sites as $site ){
 
-        # check if site has domain filters, # no domain filter, include by default
+        # check if site has domain filters, if no domain filter, include by default
         if( isset($site['filters']['domains']) && is_array($site['filters']['domains']) ){
             if( in_array($domain, $site['filters']['domains']) ){
                 $sites_filtered[] = $site;
@@ -175,6 +175,38 @@ function filter_sites_by_domain($sites, $domain = null) {
 
 }
 
+function filter_sites_by_port($sites, $port = null) {
+
+    # set port if not set
+    if( $port === null ){
+        if( isset($_SERVER['SERVER_PORT']) ){
+            $port = (int)$_SERVER['SERVER_PORT'];
+        } else {
+            $port = 80;
+        }
+    }
+
+    # filter sites var
+    $sites_filtered = array();
+
+    # filter sites
+    foreach( $sites as $site ){
+
+        # check if site has port filters, if no port filter, include by default
+        if( isset($site['filters']['ports']) && is_array($site['filters']['ports']) ){
+            if( in_array($port, $site['filters']['ports']) ){
+                $sites_filtered[] = $site;
+            }
+        } else {
+            $sites_filtered[] = $site;
+        }
+
+    }
+
+    # return
+    return $sites_filtered;
+
+}
 
 
 #
@@ -409,7 +441,7 @@ function get_sites($config) {
     # sites filter
     #$sites = filter_sites_by_client();
     $sites = filter_sites_by_domain($sites);
-    #$sites = filter_sites_by_port();
+    $sites = filter_sites_by_port($sites);
 
     # return
     return $sites;
