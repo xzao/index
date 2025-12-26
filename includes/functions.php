@@ -139,6 +139,45 @@ function fill_site_styles($config, $site) {
 
 
 #
+#   filter[s]
+#
+function filter_sites_by_domain($sites, $domain = null) {
+
+    # set domain if not set
+    if( $domain === null ){
+        if( isset($_SERVER['HTTP_HOST']) ){
+            $host = $_SERVER['HTTP_HOST'];
+            $domain = explode(':', $host)[0];
+        } else {
+            $domain = $_SERVER['SERVER_NAME'] ?? 'localhost';
+        }
+    }
+
+    # filter sites var
+    $sites_filtered = array();
+
+    # filter sites
+    foreach( $sites as $site ){
+
+        # check if site has domain filters, # no domain filter, include by default
+        if( isset($site['filters']['domains']) && is_array($site['filters']['domains']) ){
+            if( in_array($domain, $site['filters']['domains']) ){
+                $sites_filtered[] = $site;
+            }
+        } else {
+            $sites_filtered[] = $site;
+        }
+
+    }
+
+    # return
+    return $sites_filtered;
+
+}
+
+
+
+#
 #   generate[er]s
 #
 function generate_styles_from_site($site) {
@@ -347,10 +386,10 @@ function get_sites($config) {
         throw new Exception('invalid config: missing sites');
     }
 
-    # initialise sites
+    # sites init
     $sites = array();
 
-    # iterate config sites
+    # sites populate
     foreach( $config['sites'] as $site ){
         
         # fill defaults
@@ -365,7 +404,12 @@ function get_sites($config) {
         # append
         $sites[] = $site;
 
-    } 
+    }
+
+    # sites filter
+    #$sites = filter_sites_by_client();
+    $sites = filter_sites_by_domain($sites);
+    #$sites = filter_sites_by_port();
 
     # return
     return $sites;
