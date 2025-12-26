@@ -46,7 +46,7 @@
                 <?php foreach( $sites as $site ){ ?>
 
                     <!-- site -->
-                    <?php get_site_html($site); ?>
+                    <?php echo render_site_html($site); ?>
 
                 <?php } ?>
             </div>
