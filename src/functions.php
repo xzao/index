@@ -184,11 +184,12 @@
         $g = hexdec(substr($hex, 2, 2));
         $b = hexdec(substr($hex, 4, 2));
 
-        # generate lighter background by blending with white (85% lighter)
-        $white = 255;
-        $bg_r = round($r + ($white - $r) * 0.85);
-        $bg_g = round($g + ($white - $g) * 0.85);
-        $bg_b = round($b + ($white - $b) * 0.85);
+        # generate slightly darker background for blended look (80% of original)
+        # close enough to blend with icon, dark enough to provide subtle distinction
+        $darken_factor = 0.80;
+        $bg_r = round($r * $darken_factor);
+        $bg_g = round($g * $darken_factor);
+        $bg_b = round($b * $darken_factor);
         
         # clamp and convert to hex
         $bg_r = max(0, min(255, $bg_r));
