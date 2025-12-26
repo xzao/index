@@ -141,6 +141,39 @@ function fill_site_styles($config, $site) {
 #
 #   filter[s]
 #
+function filter_sites_by_client($sites, $client = null) {
+
+    # set client if not set
+    if( $client === null ){
+        if( isset($_SERVER['REMOTE_ADDR']) ){
+            $client = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $client = '127.0.0.1';
+        }
+    }
+
+    # filter sites var
+    $sites_filtered = array();
+
+    # filter sites
+    foreach( $sites as $site ){
+
+        # check if site has client filters, if no client filter, include by default
+        if( isset($site['filters']['clients']) && is_array($site['filters']['clients']) ){
+            if( in_array($client, $site['filters']['clients']) ){
+                $sites_filtered[] = $site;
+            }
+        } else {
+            $sites_filtered[] = $site;
+        }
+
+    }
+
+    # return
+    return $sites_filtered;
+
+}
+
 function filter_sites_by_domain($sites, $domain = null) {
 
     # set domain if not set
@@ -439,7 +472,7 @@ function get_sites($config) {
     }
 
     # sites filter
-    #$sites = filter_sites_by_client();
+    $sites = filter_sites_by_client($sites);
     $sites = filter_sites_by_domain($sites);
     $sites = filter_sites_by_port($sites);
 
