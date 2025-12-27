@@ -66,7 +66,7 @@ function fill_site_image($config, $site) {
 
     # check exists
     if( isset($site['image']) && isset($site['image']['path']) ){
-        return true;
+        return $site;
     }
 
     # set fallback
