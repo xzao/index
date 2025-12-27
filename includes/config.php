@@ -21,8 +21,10 @@
 
     # config default site
     define( 'DEFAULT_SITE', array(
-        'classes' => array(),
-        'logo'    => 'default.png'
+        'classes'     => array(),
+        'description' => '',
+        'logo'        => 'default.png',
+        'tagline'     => ''
     ));
 
     # config default styles

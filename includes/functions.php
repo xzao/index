@@ -48,6 +48,20 @@ function fill_site_defaults($config, $site) {
 
 }
 
+function fill_site_group($group, $site) {
+
+    # extract group properties
+    $group_properties = $group;
+    unset($group_properties['sites']);
+
+    # fill site with group properties
+    $site = array_merge($group_properties, $site);
+
+    # return
+    return $site;
+
+}
+
 function fill_site_image($config, $site) {
 
     # check exists
@@ -447,27 +461,40 @@ function get_site_image_data_uri($site) {
 function get_sites($config) {
 
     # check config
-    if( ! isset($config['sites']) ){
-        throw new Exception('invalid config: missing sites');
+    if( ! isset($config['groups']) ){
+        throw new Exception('invalid config: missing groups');
     }
 
     # sites init
     $sites = array();
 
     # sites populate
-    foreach( $config['sites'] as $site ){
+    foreach( $config['groups'] as $group ){
         
-        # fill defaults
-        $site = fill_site_defaults($config, $site);
+        # check group has sites
+        if( ! isset($group['sites']) || ! is_array($group['sites']) ){
+            continue;
+        }
 
-        # fill image
-        $site = fill_site_image($config, $site);
+        # iterate sites in group
+        foreach( $group['sites'] as $site ){
+            
+            # fill group
+            $site = fill_site_group($group, $site);
 
-        # fill styles
-        $site = fill_site_styles($config, $site);
+            # fill image
+            $site = fill_site_image($config, $site);
 
-        # append
-        $sites[] = $site;
+            # fill styles
+            $site = fill_site_styles($config, $site);
+
+            # fill defaults
+            $site = fill_site_defaults($config, $site);
+
+            # append
+            $sites[] = $site;
+
+        }
 
     }
 
