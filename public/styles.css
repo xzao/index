@@ -74,11 +74,8 @@ body.mobile .card .card-desc {
     height: 100%;
     width: 100%;
     padding: 20%;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.loaded .card-image img {
     opacity: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card .card-content {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
