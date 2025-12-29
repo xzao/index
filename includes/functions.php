@@ -84,14 +84,19 @@ function fill_site_image($config, $site) {
         $site['image']['type'] = 'svg';
     }
 
-    # return image by type
+    # set image by type
     switch( $site['image']['type'] ){
         case 'svg':
-            return fill_site_image_svg($config, $site);
+            $site = fill_site_image_svg($config, $site);
     }
 
-    # return default
-    return DEFAULT_IMAGE;
+    # check
+    if( ! file_exists(__DIR__ . '/' . $site['image']['path']) ){
+        $site['image'] = DEFAULT_IMAGE;
+    }
+
+    # return
+    return $site;
 
 }
 
