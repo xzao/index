@@ -113,3 +113,10 @@ body.tablet .card .card-content {
 .card.selected .card-image img {
     opacity: 0.85;
 }
+
+body.mobile .card:hover {
+    box-shadow: none !important;
+}
+body.mobile .card.selected {
+    box-shadow: none !important;
+}
