@@ -48,16 +48,18 @@ body.mobile .card .card-desc {
 .card {
     border: 0px;
     cursor: pointer;
-    transition: 0.6s ease-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
     margin: 0;
     border-radius: 0px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    position: relative;
 }
 .card .card-spacer {
     transition: 0.2s;
 }
 .card .card-title {
-    transition: 0.4s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 32px;
     opacity: 0;
     font-weight: 700;
@@ -73,13 +75,13 @@ body.mobile .card .card-desc {
     width: 100%;
     padding: 20%;
     opacity: 0;
-    transition: 0.4s ease-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .loaded .card-image img {
     opacity: 1;
 }
 .card .card-content {
-    transition: 0.4s ease-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     font-weight: 500;
 }
@@ -89,9 +91,28 @@ body.tablet .card .card-content {
 .loaded .card .card-content {
     opacity: 0.7;
 }
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
 .card:hover .card-content {
     opacity: 1;
 }
+.card:hover .card-title {
+    opacity: 1;
+}
+.card:hover .card-image img {
+    opacity: 0.9;
+}
+.card.selected {
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
 .card.selected .card-content {
     opacity: 1;
+}
+.card.selected .card-title {
+    opacity: 1;
+}
+.card.selected .card-image img {
+    opacity: 0.85;
 }
