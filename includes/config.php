@@ -15,7 +15,7 @@
     # config default image
     define( 'DEFAULT_IMAGE', array(
         'name' => 'default',
-        'path' => '',
+        'path' => 'vendor/selfhst-icons/svg/ubuntu.svg',
         'type' => 'svg'
     ));
 
