@@ -9,6 +9,10 @@
     # site[s]
     $sites = get_sites($config);
 
+    # page styles
+    $page_styles = get_page_styles($config);
+    $page_style  = collapse_styles_to_style($page_styles);
+
     # debug
     if( DEBUG ){ print_debug($config, $sites); }
 
@@ -41,7 +45,7 @@
     <body>
 
         <!-- container -->
-        <div class="page">
+        <div class="page" style="<?php echo $page_style; ?>">
             <div class="row">
                 <?php foreach( $sites as $site ){ ?>
 

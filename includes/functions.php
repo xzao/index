@@ -402,6 +402,18 @@ function get_description() {
 
 }
 
+function get_page_styles($config) {
+
+    # check config
+    if( isset($config['defaults']['page']['styles']) ){
+        return $config['defaults']['page']['styles'];
+    }
+
+    # return
+    return array();
+
+}
+
 function get_protocol() {
 
     # default http
