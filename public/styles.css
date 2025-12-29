@@ -31,7 +31,7 @@ body.tablet .card .card-desc {
     min-height: 260px !important;
 }
 body.mobile .card .card-desc {
-    margin-bottom: 64px;
+    margin-bottom: 128px;
 }
 
 
