@@ -15,7 +15,7 @@
     # config default image
     define( 'DEFAULT_IMAGE', array(
         'name' => 'default',
-        'path' => 'vendor/selfhst-icons/svg/docker.svg',
+        'path' => 'vendor/selfhst-icons/svg/linux-containers-lxc-light.svg',
         'type' => 'svg'
     ));
 
