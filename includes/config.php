@@ -15,7 +15,7 @@
     # config default image
     define( 'DEFAULT_IMAGE', array(
         'name' => 'default',
-        'path' => 'vendor/selfhst-icons/svg/ubuntu.svg',
+        'path' => 'vendor/selfhst-icons/svg/docker.svg',
         'type' => 'svg'
     ));
 
@@ -23,8 +23,8 @@
     define( 'DEFAULT_SITE', array(
         'classes'     => array(),
         'description' => '',
-        'logo'        => 'default.png',
-        'tagline'     => ''
+        'tagline'     => '',
+        'title'       => ''        
     ));
 
     # config default styles
