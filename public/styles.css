@@ -114,9 +114,9 @@ body.tablet .card .card-content {
     opacity: 0.85;
 }
 
-body.mobile .card:hover {
+.card:hover {
     box-shadow: none !important;
 }
-body.mobile .card.selected {
+.card.selected {
     box-shadow: none !important;
 }
