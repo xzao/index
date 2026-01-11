@@ -368,6 +368,18 @@ function generate_styles_from_site_svg($site) {
 #
 #   get[er]s
 #
+function get_body_styles($config) {
+
+    # check config
+    if( isset($config['defaults']['body']['styles']) ){
+        return $config['defaults']['body']['styles'];
+    }
+
+    # return
+    return array();
+
+}
+
 function get_config_file($disk) {
 
     # file set

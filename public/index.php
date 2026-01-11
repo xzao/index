@@ -9,7 +9,11 @@
     # site[s]
     $sites = get_sites($config);
 
-    # page styles
+    # body
+    $body_styles = get_body_styles($config);
+    $body_style  = collapse_styles_to_style($body_styles);
+
+    # page
     $page_styles = get_page_styles($config);
     $page_style  = collapse_styles_to_style($page_styles);
 
@@ -18,7 +22,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="<?php echo $body_style; ?>">
     <head>
 
         <!-- title -->
@@ -42,7 +46,7 @@
         <link rel="stylesheet" href="styles.css">
 
     </head>
-    <body>
+    <body style="<?php echo $body_style; ?>">
 
         <!-- container -->
         <div class="page" style="<?php echo $page_style; ?>">
@@ -54,7 +58,7 @@
 
                 <?php } ?>
             </div>
-        <div>
+        </div>
 
         <!-- script[s]. -->
         <script src="vendor/jquery.min.js"></script>

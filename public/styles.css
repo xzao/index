@@ -6,8 +6,6 @@
 }
 
 body, html {
-    background-color: #1d1d1d;
-    background-color: white;
     min-width: 280px;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
