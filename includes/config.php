@@ -24,7 +24,7 @@
         'classes'     => array(),
         'description' => '',
         'tagline'     => '',
-        'title'       => ''        
+        'title'       => ''
     ));
 
     # config default styles

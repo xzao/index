@@ -10,3 +10,4 @@ services:
     restart: unless-stopped
     volumes:
       - ${INDEX_VOLUME_ETC_INDEX:-./mnt/etc/index}:/etc/index
+      - ${INDEX_VOLUME_ETC_INDEX_ICONS:-./icons/custom}:/etc/index/icons

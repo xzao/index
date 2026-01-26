@@ -6,4 +6,5 @@
 mnt
 
 # vendor
-includes/vendor
+icons/custom
+icons/vendor

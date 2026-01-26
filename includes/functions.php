@@ -62,6 +62,18 @@ function fill_site_group($group, $site) {
 
 }
 
+function fill_site_image_path($path) {
+
+    # prepend ../icons/ to paths starting with vendor/ or custom/
+    if( strpos($path, 'vendor/') === 0 || strpos($path, 'custom/') === 0 ){
+        return '../icons/' . $path;
+    }
+
+    # return
+    return $path;
+
+}
+
 function fill_site_image($config, $site) {
 
     # check exists
@@ -91,7 +103,7 @@ function fill_site_image($config, $site) {
     }
 
     # check
-    if( ! file_exists(__DIR__ . '/' . $site['image']['path']) ){
+    if( ! file_exists(__DIR__ . '/' . fill_site_image_path($site['image']['path'])) ){
         $site['image'] = DEFAULT_IMAGE;
     }
 
@@ -120,7 +132,7 @@ function fill_site_image_svg($config, $site) {
 
     # check
     foreach( $options as $option ){
-        if( file_exists($base . '/' .$option) ){
+        if( file_exists($base . '/' . fill_site_image_path($option)) ){
             $path = $option;
             break;
         }
@@ -293,7 +305,7 @@ function generate_styles_from_site_svg($site) {
     }
 
     # build full path
-    $svg_path = __DIR__ . '/' . $site['image']['path'];
+    $svg_path = __DIR__ . '/' . fill_site_image_path($site['image']['path']);
 
     # check file exists
     if( ! file_exists($svg_path) ){
@@ -449,7 +461,7 @@ function get_site_image_data_uri($site) {
     }
 
     # build full path
-    $svg_full_path = __DIR__ . '/' . $site['image']['path'];
+    $svg_full_path = __DIR__ . '/' . fill_site_image_path($site['image']['path']);
 
     # check file exists
     if( ! file_exists($svg_full_path) ){

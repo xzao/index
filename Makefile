@@ -5,6 +5,12 @@
 
 
 #
+#	dir[s]
+#
+$(shell mkdir -p icons/custom)
+
+
+#
 #	env[s]
 #
 $(shell test -f .env || cp .env.sample .env)
@@ -23,9 +29,9 @@ develop:
 
 install:
 	ln -sf $(shell pwd)/mnt/etc/index /etc/index
-	@if [ ! -d 'includes/vendor/selfhst-icons' ]; then \
-		mkdir -p 'includes/vendor' ; \
-		cd includes/vendor && git clone --depth 1 --single-branch https://github.com/selfhst/icons selfhst-icons; \
+	@if [ ! -d 'icons/vendor/selfhst-icons' ]; then \
+		mkdir -p 'icons/vendor' ; \
+		cd 'icons/vendor' && git clone --depth 1 --single-branch 'https://github.com/selfhst/icons' selfhst-icons; \
 	fi
 
 logs:
