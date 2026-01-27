@@ -395,11 +395,11 @@ function get_body_styles($config) {
 function get_config_file($disk) {
 
     # file set
-    $file = $disk . '/config.json';
+    $file = $disk . '/index.json';
 
     # file check exist[s] / fallback
     if( ! file_exists($file) ){ 
-        throw new Exception('config file not found');
+        throw new Exception('index file not found');
     }
 
     # return
