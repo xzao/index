@@ -57,6 +57,24 @@ function fill_site_group($group, $site) {
     # fill site with group properties
     $site = array_merge($group_properties, $site);
 
+    # merge filters deeply so both group and site filters apply
+    if( isset($group_properties['filters']) && isset($site['filters']) ){
+        $merged_filters = array();
+        
+        # merge each filter type (domains, ips, ports)
+        foreach( array('domains', 'ips', 'ports') as $filter_type ){
+            $group_values = isset($group_properties['filters'][$filter_type]) ? $group_properties['filters'][$filter_type] : array();
+            $site_values = isset($site['filters'][$filter_type]) ? $site['filters'][$filter_type] : array();
+            
+            # merge and remove duplicates
+            if( !empty($group_values) || !empty($site_values) ){
+                $merged_filters[$filter_type] = array_values(array_unique(array_merge($group_values, $site_values)));
+            }
+        }
+        
+        $site['filters'] = $merged_filters;
+    }
+
     # return
     return $site;
 
