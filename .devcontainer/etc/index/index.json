@@ -1,0 +1,422 @@
+{
+    "defaults" : {
+        "page" : {
+            "styles": {
+                "background-color": "#1D1D1D"
+            }
+        }
+    },
+    "groups" : [
+        {
+            "id": "root",
+            "filters": {
+                "domains": [
+                    "127.0.0.1",
+                    "yencken.link"
+                ]
+            },
+            "sites": [
+                {
+                    "id": "core",
+                    "description": "Core hosts and manages essential local services, including code repositories and CI/CD pipelines, virtualization and server management, as well as network configuration and monitoring. These tools provide the foundation for development, deployment, and reliable operations within the local environment.",
+                    "link": "https://core.yencken.link/",
+                    "styles": {
+                        "background-color": "#1C2833",
+                        "color": "#F5F5F5"
+                    },
+                    "title": "Core",
+                    "tagline": "Foundational infrastructure and services."
+                },
+                {
+                    "id": "dev",
+                    "description": "Development hosts tools and environments that support building, testing, and deploying software. From collaborative coding platforms and package management to containerized environments and API sandboxes, this group empowers developers to create, integrate, and iterate efficiently.",
+                    "link": "https:\/\/dev.yencken.link\/",
+                    "styles": {
+                        "background-color": "#1E1E1E",
+                        "color": "#F5F5F5"
+                    },
+                    "title": "Dev",
+                    "tagline": "Tools and environments for building software."
+                },
+                {
+                    "id": "home",
+                    "description": "Home contains services that make everyday life easier within the local environment. From smart home integrations and dashboards to calendars, task management, and personal utilities, this category keeps household tools organized and accessible.",
+                    "styles": {
+                        "background-color": "#4D4D4D",
+                        "color": "#F5F5F5"
+                    },
+                    "link": "https://home.yencken.link/",
+                    "title": "Home",
+                    "tagline": "Smart home and personal management tools."
+                },
+                {
+                    "id": "media",
+                    "description": "Media provides services for automated acquisition and organization of digital content. From managing libraries and scheduling downloads to handling streaming and storage, these tools streamline the end-to-end media workflow within the local environment.",
+                    "link": "https:\/\/media.yencken.link\/",
+                    "styles": {
+                        "background-color": "#D2C6B2",
+                        "color": "#2B2B2B"
+                    },
+                    "title": "Media",
+                    "tagline": "Automated media management and delivery."
+                },
+                {
+                    "id": "util",
+                    "description": "Utility groups together lightweight services and helper tools that provide specific functionality without requiring a dedicated category. These services cover a range of tasks, from automation and file handling to integration helpers and background processes that support the wider environment.",
+                    "link": "https://util.yencken.link/",
+                    "styles": {
+                        "background-color": "#8E735B",
+                        "color": "#F5F5F5"
+                    },
+                    "title": "Util",
+                    "tagline": "Supporting utilities and helper tools."
+                }
+            ]
+        },
+        {
+            "id": "core",
+            "filters": {
+                "domains": [
+                    "core.yencken.link"
+                ]
+            },
+            "sites": [
+                {
+                    "id": "beszel",
+                    "description": "Bezsel provides lightweight, privacy-friendly monitoring for your self-hosted services. By tracking system health, uptime, resource usage, and application responsiveness, Bezsel ensures that every component of your stack remains visible and predictable. With real-time metrics, alerts, and a clean dashboard interface, it brings clarity and oversight to even the most complex homelab environments.",
+                    "link": "https:\/\/beszel.core.yencken.link\/",
+                    "styles": {
+                        "background-color": "#2E2E31",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Monitoring made simple.",
+                    "title": "Beszel"
+                },
+                {
+                    "id": "gitlab",
+                    "description": "GitLab is an all-in-one DevOps platform that streamlines the entire software lifecycle—from planning and source control to CI/CD, monitoring, and deployment. By consolidating tools and workflows into a single interface, GitLab empowers teams to collaborate efficiently, deliver faster, and maintain complete visibility across every stage of development.",
+                    "link": "https:\/\/gitlab.core.yencken.link\/",
+                    "tagline": "Complete DevOps in one platform.",
+                    "title": "GitLab"                },
+                {
+                    "id": "home-assistant",
+                    "link": "https:\/\/haos.core.yencken.link\/",
+                    "description": "Home Assistant is a powerful, privacy focused home automation platform that puts you in full control of your smart devices. By unifying sensors, switches, lights, media players, and integrations into a single interface, Home Assistant empowers you to build automations, monitor your home, and create a seamless, intelligent living environment, all without relying on cloud services.",
+                    "styles": {
+                        "background-color": "#FFFFFF",
+                        "color": "#2B2B2B"
+                    },
+                    "tagline": "Local automation platform for smart devices.",
+                    "title": "Home Assistant"
+                },
+                {
+                    "id": "nas",
+                    "description": "TerraMaster provides reliable, high-performance network-attached storage designed for home users, power users, and small businesses. With support for multi-drive configurations, RAID protection, private cloud services, and seamless media and file sharing, TerraMaster NAS devices offer secure, centralized storage that keeps your data accessible, protected, and organized.",
+                    "image": {
+                        "path": "vendor/selfhst-icons/svg/truenas-core.svg",
+                        "type": "svg"
+                    },
+                    "link": "https:\/\/nas.core.yencken.link\/",
+                    "styles": {
+                        "background-color": "#D3DADD",
+                        "color": "#2B2B2B"
+                    },
+                    "title": "Network Attached Storage",
+                    "tagline": "Storage made simple."
+                },
+                {
+                    "id": "proxmox",
+                    "description": "Proxmox VE provides an open-source platform for running and managing virtual machines and containers. It combines compute, storage, and networking into a unified interface, with support for clustering, high availability, and integrated backup, enabling efficient and reliable operation of virtualized.core.tructure.",
+                    "link": "https:\/\/proxmox.core.yencken.link\/",
+                    "styles": {
+                        "background-color": "#1d1d1d",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Virtualization and container management platform.",
+                    "title": "Proxmox VE"
+                },
+                {
+                    "id": "ubiquiti-unifi",
+                    "description": "UniFi OS provides a centralized platform for managing network.core.tructure and connected devices. It enables configuration and monitoring of gateways, switches, access points, and cameras through a single interface, delivering visibility, control, and security across the local network environment.",
+                    "link": "https:\/\/unifi.core.yencken.link\/",
+                    "styles": {
+                        "background-color": "#f4f5f6",
+                        "color": "#2b2b2b"
+                    },
+                    "title": "Unifi",
+                    "tagline": "Unified network and device management."
+                }
+            ]
+        },
+        {
+            "id": "dev",
+            "filters": {
+                "domains": [
+                    "dev.yencken.link"
+                ]
+            },
+            "sites": [
+                {
+                    "id": "board",
+                    "description": "Board captures incoming HTTP requests, stores the data as structured JSON, and makes it accessible through a simple dashboard. It provides a straightforward way to inspect, monitor, and analyze request payloads, making it useful for debugging, integration testing, and lightweight data collection.",
+                    "styles": {
+                        "background-color": "#2f3136",
+                        "color": "#F5F5F5"
+                    },
+                    "link": "https:\/\/board.dev.yencken.link\/",
+                    "project": {},
+                    "tagline": "Lightweight request logging and dashboard.",                    
+                    "title": "Board"
+                },
+                {
+                    "id": "mailpit",
+                    "description": "Mailpit provides a lightweight SMTP server and web UI for capturing, viewing, and testing email during development. It intercepts outgoing messages, stores them locally, and offers a searchable inbox, making it easy to debug formatting, content, and delivery without relying on external mail servers.",                    
+                    "link": "https:\/\/mailpit.dev.yencken.link\/",                    
+                    "styles": {
+                        "background-color": "#2B2B2B",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "E-mail testing and capture.",                    
+                    "title": "Mailpit"
+                }
+            ]
+        },
+        {
+            "id": "home",
+            "filters": {
+                "domains": [
+                    "home.yencken.link"
+                ]
+            },
+            "sites": [
+                {
+                    "id": "home-assistant",
+                    "description": "Home Assistant is a powerful, privacy focused home automation platform that puts you in full control of your smart devices. By unifying sensors, switches, lights, media players, and integrations into a single interface, Home Assistant empowers you to build automations, monitor your home, and create a seamless, intelligent living environment, all without relying on cloud services.",
+                    "link": "https:\/\/haos.core.yencken.link\/",
+                    "project": {
+                        "link": "https:\/\/www.home-assistant.io/"
+                    },
+                    "styles": {
+                        "background-color": "#FFFFFF",
+                        "color": "#2B2B2B"
+                    },
+                    "tagline": "Local automation platform for smart devices.",
+                    "title": "Home Assistant"
+                },
+                {
+                    "id": "mealie",
+                    "description": "Mealie is a powerful self-hosted recipe manager designed to make cooking simple, organized, and enjoyable. It brings your entire recipe collection into one clean interface, letting you import, tag, plan meals, create shopping lists, and share dishes with ease. With its beautiful UI and strong automation features, Mealie keeps your kitchen workflow smooth, from discovering recipes to preparing them.",                    
+                    "link": "https:\/\/mealie.home.yencken.link\/",                    
+                    "styles": {
+                        "background-color": "#E8D9C3",
+                        "color": "#2B2B2B"
+                    },
+                    "tagline": "Recipes, meal planning, and kitchen organization.",
+                    "title": "Mealie"                    
+                }
+            ]
+        },
+        {
+            "id": "media",
+            "filters": {
+                "domains": [
+                    "media.yencken.link"
+                ]
+            },            
+            "sites": [
+                {
+                    "id": "bazarr",        
+                    "description": "Bazarr automates subtitle management for your media library. It searches, downloads, and synchronizes subtitles for movies and TV shows, ensuring every title is accessible in your preferred languages. Integrated tightly with Radarr and Sonarr, it provides a unified solution for maintaining a complete and language-friendly media experience.",
+                    "link": "https:\/\/bazarr.media.yencken.link",               
+                    "tagline": "Automated subtitle management for your entire library.",
+                    "title": "Bazarr"
+                },
+                {
+                    "id": "jellyfin",
+                    "description": "Jellyfin is a free and open-source media server that lets you take control of your movies, shows, music, and more. Stream to any device, anywhere, without restrictions or subscriptions. With Jellyfin, you own your library, your privacy, and your experience—completely customizable and powered by the community.",
+                    "link": "https:\/\/jellyfin.media.yencken.link",
+                    "styles": {
+                        "background-color": "#1E1E2E",
+                        "border-color": "#009252",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Stream to any device, anywhere, without restrictions.",
+                    "title": "Jellyfin"
+                },
+                {
+                    "styles": {
+                        "background-color": "#3A2F55",
+                        "color": "whitesmoke"
+                    },
+                    "project": {},
+                    "title": "Jellyseer",
+                    "id": "service.jellyseer",        
+                    "description": "Jellyseerr is a modern request management and media discovery tool for Jellyfin and Plex. It provides an intuitive interface for users to request movies and shows, while giving admins powerful tools for approval, automation, and seamless integration with their media libraries.",
+                    "tagline": "Seamless media requests, from start to stream.",
+                    "link": "https:\/\/jellyseer.media.yencken.link"
+                },   
+                {
+                    "styles": {
+                        "background-color": "#009252",
+                        "border-color": "#009252",
+                        "color": "whitesmoke"
+                    },
+                    "project": {
+                        "link": "https:\/\/lidarr.audio\/"
+                    },
+                    "title": "Lidarr",
+                    "id": "service.lidarr",        
+                    "description": "Lidarr automates the discovery, organization, and management of music libraries. It monitors favorite artists, tracks new releases, and integrates seamlessly with download clients and storage systems to keep collections complete and perfectly tagged. Designed for self-hosted environments, Lidarr ensures every album and track is always up to date, cleanly organized, and ready to play.",
+                    "tagline": "Music collection manager.",
+                    "link": "https:\/\/lidarr.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#ffe5c3",
+                        "color": "#2b2b2b"
+                    },
+                    "link": "https:\/\/metube.media.yencken.link\/",
+                    "project": {},
+                    "title": "MeTube",
+                    "id": "service.metube",
+                    "description": "MeTube provides a simple, web-based interface for downloading videos and audio from online platforms. It runs locally, supports multiple formats, and offers queueing and management features — making it easy to collect and organize media without relying on external services.",
+                    "tagline": "Self-hosted video downloader."
+                },
+                {
+                    "styles": {
+                        "background-color": "#F5F5F5",
+                        "color": "#2B2B2B"
+                    },
+                    "project": {
+                        "link": "https:\/\/nzbget.net\/"
+                    },
+                    "title": "NZBGet",
+                    "id": "service.nzbget",
+                    "description": "NZBGet is a lightweight, high-performance downloader optimized for speed and efficiency. Designed for self-hosted environments, it handles Usenet downloads with precision, automation, and minimal resource usage. Its smart queue management and flexible configuration make it a reliable backbone for media automation workflows.",
+                    "tagline": "An efficient Usenet downloader.",
+                    "link": "https:\/\/nzbget.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#2f3436",
+                        "border-color": "#2f3436",
+                        "color": "whitesmoke"
+                    },
+                    "project": {
+                        "github": "https:\/\/github.com\/theotherp\/nzbhydra2"
+                    },
+                    "title": "NZBHydra2",
+                    "id": "service.nzbhydra2",
+                    "description": "NZBHydra2 acts as a central search aggregator for Usenet, combining results from multiple indexers into a single, intelligent interface. It provides advanced filtering, de-duplication, and result unification to make finding and downloading content faster and more efficient. Designed for self-hosted setups, it streamlines Usenet automation and enhances every connected services discovery capabilities.",
+                    "tagline": "Meta search for newznab indexers and torznab trackers.",
+                    "link": "https:\/\/nzbhydra2.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#febf5b",
+                        "border-color": "#febf5b",
+                        "color": "#2b2b2b"
+                    },
+                    "project": {
+                        "link": "https:\/\/prowlarr.com\/"
+                    },
+                    "title": "Prowlarr",
+                    "id": "service.prowlarr",
+                    "description": "Prowlarr is a indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Sonarr, Radarr, Lidarr, and Readarr offering complete management of your indexers with no per app Indexer setup required (we do it all).",
+                    "tagline": "Indexer manager/proxy.",
+                    "link": "https:\/\/prowlarr.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#333333",
+                        "border-color": "#333333",
+                        "color": "whitesmoke"
+                    },
+                    "project": {
+                        "link": "https:\/\/radarr.video\/"
+                    },
+                    "title": "Radarr",
+                    "id": "service.radarr",
+                    "description": "Radarr automates the tracking, downloading, and organization of movies within the media environment. By monitoring preferred sources and integrating seamlessly with download clients and storage systems, Radarr ensures that every film in your library is discovered, fetched, and maintained with minimal effort.",
+                    "tagline": "Movie collection manager.",
+                    "link": "https:\/\/radarr.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#8e2222",
+                        "border-color": "#8e2222",
+                        "color": "whitesmoke"
+                    },
+                    "project": {
+                        "link": "https:\/\/readarr.com\/"
+                    },
+                    "title": "Readarr",
+                    "id": "service.readarr",
+                    "description": "Readarr automates the tracking, acquisition, and organization of ebooks and audiobooks. It monitors favorite authors and series, fetches new releases, and keeps your reading library perfectly managed. Integrated with download clients and metadata sources, Readarr ensures every title is neatly tagged, stored, and synced for a seamless reading experience across devices.",
+                    "tagline": "Ebook collection manager.",
+                    "link": "https:\/\/readarr.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#2193b5",
+                        "border-color": "#2193b5",
+                        "color": "whitesmoke"
+                    },
+                    "project": {
+                        "link": "https:\/\/sonarr.tv\/"
+                    },
+                    "title": "Sonarr",
+                    "id": "service.sonarr",
+                    "description": "Sonarr is an automated TV series management tool that handles everything from tracking and downloading new episodes to organizing your library. It monitors your shows, grabs new releases as soon as they are available, and keeps your collection perfectly categorized. Designed for seamless integration with other media services, Sonarr ensures your TV library stays up to date and effortlessly maintained.",
+                    "tagline": "Show collection manager.",
+                    "link": "https:\/\/sonarr.media.yencken.link"
+                },
+                {
+                    "styles": {
+                        "background-color": "#e8e8e8",
+                        "border-color": "#e8e8e8",
+                        "color": "#2b2b2b"
+                    },
+                    "project": {
+                        "link": "https:\/\/transmissionbt.com\/"
+                    },
+                    "title": "Transmission",
+                    "id": "service.transmission",
+                    "description": "Transmission is a lightweight, reliable BitTorrent client designed for speed and simplicity. It provides a clean interface for managing downloads, seeding files, and connecting with peers efficiently. Whether integrated into automated workflows or run as a standalone service, Transmission delivers dependable performance and minimal overhead — perfect for self-hosted environments focused on clarity and control.",
+                    "tagline": "Cross-platform BitTorrent client.",
+                    "link": "https:\/\/transmission.media.yencken.link"
+                }
+            ]
+        },
+        {
+            "id": "util",
+            "filters": {
+                "domains": [
+                    "util.yencken.link"
+                ]
+            },            
+            "sites": [
+                {
+                    "link": "https:\/\/enclosed.util.yencken.link\/",
+                    "project": {},
+                    "title": "Enclosed",
+                    "id": "enclosed",
+                    "description": "",
+                    "tagline": ""
+                },
+                {
+                    "styles": {
+                        "background-color": "#1d1d1d",
+                        "color": "whitesmoke"
+                    },
+                    "link": "https:\/\/pathport.util.yencken.link\/",
+                    "project": {},
+                    "title": "Pathport",
+                    "id": "pathport",
+                    "description": "Pathport manages secure access to system folders by validating client requests against defined policies. New clients are placed on a greylist for manual approval and can then be added to a whitelist or blocked via a blocklist. Approved clients gain controlled access to download files, ensuring both flexibility and security in managing local resources.",
+                    "tagline": "Controlled file access gateway."
+                }
+            ]
+        }
+    ]
+}
