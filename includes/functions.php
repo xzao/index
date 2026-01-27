@@ -172,39 +172,6 @@ function fill_site_styles($config, $site) {
 #
 #   filter[s]
 #
-function filter_sites_by_client($sites, $client = null) {
-
-    # set client if not set
-    if( $client === null ){
-        if( isset($_SERVER['REMOTE_ADDR']) ){
-            $client = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $client = '127.0.0.1';
-        }
-    }
-
-    # filter sites var
-    $sites_filtered = array();
-
-    # filter sites
-    foreach( $sites as $site ){
-
-        # check if site has client filters, if no client filter, include by default
-        if( isset($site['filters']['clients']) && is_array($site['filters']['clients']) ){
-            if( in_array($client, $site['filters']['clients']) ){
-                $sites_filtered[] = $site;
-            }
-        } else {
-            $sites_filtered[] = $site;
-        }
-
-    }
-
-    # return
-    return $sites_filtered;
-
-}
-
 function filter_sites_by_domain($sites, $domain = null) {
 
     # set domain if not set
@@ -226,6 +193,119 @@ function filter_sites_by_domain($sites, $domain = null) {
         # check if site has domain filters, if no domain filter, include by default
         if( isset($site['filters']['domains']) && is_array($site['filters']['domains']) ){
             if( in_array($domain, $site['filters']['domains']) ){
+                $sites_filtered[] = $site;
+            }
+        } else {
+            $sites_filtered[] = $site;
+        }
+
+    }
+
+    # return
+    return $sites_filtered;
+
+}
+
+function filter_sites_by_ip($sites, $ip = null) {
+
+    # set ip if not set
+    if( $ip === null ){
+        if( isset($_SERVER['REMOTE_ADDR']) ){
+            $ip = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ip = '127.0.0.1';
+        }
+    }
+
+    # determine ip version and filter accordingly
+    if( filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ){
+        return filter_sites_by_ipv4($sites, $ip);
+    } elseif( filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ){
+        return filter_sites_by_ipv6($sites, $ip);
+    }
+
+    # return all sites if ip is invalid
+    return $sites;
+
+}
+
+function filter_sites_by_ipv4($sites, $ipv4 = null) {
+
+    # set ipv4 if not set
+    if( $ipv4 === null ){
+        if( isset($_SERVER['REMOTE_ADDR']) ){
+            $ipv4 = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipv4 = '127.0.0.1';
+        }
+    }
+
+    # validate ipv4
+    if( ! filter_var($ipv4, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ){
+        return $sites;
+    }
+
+    # filter sites var
+    $sites_filtered = array();
+
+    # filter sites
+    foreach( $sites as $site ){
+
+        # check if site has ip filters, if no ip filter, include by default
+        if( isset($site['filters']['ips']) && is_array($site['filters']['ips']) ){
+            $matched = false;
+            foreach( $site['filters']['ips'] as $filter_ip ){
+                if( ip_match_ipv4($ipv4, $filter_ip) ){
+                    $matched = true;
+                    break;
+                }
+            }
+            if( $matched ){
+                $sites_filtered[] = $site;
+            }
+        } else {
+            $sites_filtered[] = $site;
+        }
+
+    }
+
+    # return
+    return $sites_filtered;
+
+}
+
+function filter_sites_by_ipv6($sites, $ipv6 = null) {
+
+    # set ipv6 if not set
+    if( $ipv6 === null ){
+        if( isset($_SERVER['REMOTE_ADDR']) ){
+            $ipv6 = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ipv6 = '::1';
+        }
+    }
+
+    # validate ipv6
+    if( ! filter_var($ipv6, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ){
+        return $sites;
+    }
+
+    # filter sites var
+    $sites_filtered = array();
+
+    # filter sites
+    foreach( $sites as $site ){
+
+        # check if site has ip filters, if no ip filter, include by default
+        if( isset($site['filters']['ips']) && is_array($site['filters']['ips']) ){
+            $matched = false;
+            foreach( $site['filters']['ips'] as $filter_ip ){
+                if( ip_match_ipv6($ipv6, $filter_ip) ){
+                    $matched = true;
+                    break;
+                }
+            }
+            if( $matched ){
                 $sites_filtered[] = $site;
             }
         } else {
@@ -540,7 +620,7 @@ function get_sites($config) {
     }
 
     # sites filter
-    $sites = filter_sites_by_client($sites);
+    $sites = filter_sites_by_ip($sites);
     $sites = filter_sites_by_domain($sites);
     $sites = filter_sites_by_port($sites);
 
@@ -569,6 +649,92 @@ function get_title() {
 
     # return
     return $title;
+
+}
+
+
+#
+#   ip match[s]
+#
+function ip_match_ipv4($ip, $cidr) {
+
+    # exact match
+    if( $ip === $cidr ){
+        return true;
+    }
+
+    # check if cidr notation
+    if( strpos($cidr, '/') === false ){
+        return false;
+    }
+
+    # parse cidr
+    list($subnet, $mask) = explode('/', $cidr);
+
+    # validate subnet
+    if( ! filter_var($subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ){
+        return false;
+    }
+
+    # validate mask
+    if( ! is_numeric($mask) || $mask < 0 || $mask > 32 ){
+        return false;
+    }
+
+    # convert ips to long
+    $ip_long = ip2long($ip);
+    $subnet_long = ip2long($subnet);
+
+    # create mask
+    $mask_long = -1 << (32 - (int)$mask);
+
+    # apply mask and compare
+    return ($ip_long & $mask_long) === ($subnet_long & $mask_long);
+
+}
+
+function ip_match_ipv6($ip, $cidr) {
+
+    # exact match
+    if( $ip === $cidr ){
+        return true;
+    }
+
+    # check if cidr notation
+    if( strpos($cidr, '/') === false ){
+        return false;
+    }
+
+    # parse cidr
+    list($subnet, $mask) = explode('/', $cidr);
+
+    # validate subnet
+    if( ! filter_var($subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ){
+        return false;
+    }
+
+    # validate mask
+    if( ! is_numeric($mask) || $mask < 0 || $mask > 128 ){
+        return false;
+    }
+
+    # convert ipv6 to binary
+    $ip_bin = inet_pton($ip);
+    $subnet_bin = inet_pton($subnet);
+
+    # create mask
+    $mask_int = (int)$mask;
+    $ip_bits = '';
+    $subnet_bits = '';
+
+    # convert to binary string
+    for( $i = 0; $i < strlen($ip_bin); $i++ ){
+        $ip_bits .= str_pad(decbin(ord($ip_bin[$i])), 8, '0', STR_PAD_LEFT);
+        $subnet_bits .= str_pad(decbin(ord($subnet_bin[$i])), 8, '0', STR_PAD_LEFT);
+    }
+
+    # compare masked bits
+    return substr($ip_bits, 0, $mask_int) === substr($subnet_bits, 0, $mask_int);
 
 }
 

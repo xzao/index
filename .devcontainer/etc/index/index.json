@@ -10,9 +10,8 @@
         {
             "id": "root",
             "filters": {
-                "domains": [
-                    "127.0.0.1",
-                    "REDACTED.link"
+                "ips": [
+                    "127.0.0.0/32"
                 ]
             },
             "sites": [
