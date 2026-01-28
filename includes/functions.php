@@ -565,6 +565,14 @@ function get_environment() {
     # get user agent
     $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 
+    # detect react native app by custom identifier
+    if( stripos($user_agent, 'IndexApp/ios') !== false ){
+        return 'ios';
+    }
+    if( stripos($user_agent, 'IndexApp/android') !== false ){
+        return 'android';
+    }
+
     # check for custom header set by react native app
     if( isset($_SERVER['HTTP_X_APP_PLATFORM']) ){
         return strtolower($_SERVER['HTTP_X_APP_PLATFORM']);
