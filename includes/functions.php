@@ -565,12 +565,25 @@ function get_environment() {
     # get user agent
     $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 
-    # detect android
+    # check for custom header set by react native app
+    if( isset($_SERVER['HTTP_X_APP_PLATFORM']) ){
+        return strtolower($_SERVER['HTTP_X_APP_PLATFORM']);
+    }
+
+    # detect mobile browsers
+    $mobile_browsers = array('Chrome', 'Firefox', 'Safari', 'Edge', 'Opera', 'UCBrowser', 'Samsung');
+    foreach( $mobile_browsers as $browser ){
+        if( stripos($user_agent, $browser) !== false ){
+            return 'browser';
+        }
+    }
+
+    # detect android app
     if( stripos($user_agent, 'Android') !== false ){
         return 'android';
     }
 
-    # detect ios
+    # detect ios app
     if( stripos($user_agent, 'iPhone') !== false || stripos($user_agent, 'iPad') !== false || stripos($user_agent, 'iPod') !== false ){
         return 'ios';
     }
