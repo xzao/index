@@ -168,6 +168,30 @@ function fill_site_image_svg($config, $site) {
 
 }    
 
+function fill_site_links($site) {
+
+    # get current environment
+    $environment = get_environment();
+
+    # check if links array exists with environment-specific link
+    if( isset($site['links']) && is_array($site['links']) && isset($site['links'][$environment]) ){
+        $site['link'] = $site['links'][$environment];
+        return $site;
+    }
+
+    # fallback to default link if it exists
+    if( isset($site['link']) ){
+        return $site;
+    }
+
+    # no matching link found, set to empty string
+    $site['link'] = '';
+
+    # return
+    return $site;
+
+}
+
 function fill_site_styles($config, $site) {
 
     # check exists
@@ -536,6 +560,26 @@ function get_page_styles($config) {
 
 }
 
+function get_environment() {
+
+    # get user agent
+    $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+
+    # detect android
+    if( stripos($user_agent, 'Android') !== false ){
+        return 'android';
+    }
+
+    # detect ios
+    if( stripos($user_agent, 'iPhone') !== false || stripos($user_agent, 'iPad') !== false || stripos($user_agent, 'iPod') !== false ){
+        return 'ios';
+    }
+
+    # default to browser
+    return 'browser';
+
+}
+
 function get_protocol() {
 
     # default http
@@ -620,6 +664,9 @@ function get_sites($config) {
             
             # fill group
             $site = fill_site_group($group, $site);
+
+            # fill link based on environment
+            $site = fill_site_links($site);
 
             # fill image
             $site = fill_site_image($config, $site);

@@ -72,6 +72,9 @@
                     "id": "ubiquiti-unifi",
                     "description": "UniFi OS provides a centralized platform for managing network.core.tructure and connected devices. It enables configuration and monitoring of gateways, switches, access points, and cameras through a single interface, delivering visibility, control, and security across the local network environment.",
                     "link": "https:\/\/unifi.core.example.com\/",
+                    "links": {
+                        "android": "https:\/\/unifi.ui.com\/"
+                    },
                     "styles": {
                         "background-color": "#D2C6B2",
                         "color": "#2C2A28"
