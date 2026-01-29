@@ -1,6 +1,6 @@
 # Index
 
-A self-hosted dashboard for organizing and accessing your web apps. 
+A self-hosted server for organizing and accessing your web apps. 
 
 Index provides a clean, customizable interface for managing links to your infrastructure, development tools, and applications with intelligent filtering based on network context.
 
@@ -21,6 +21,10 @@ Groups contain multiple sites and cascade their properties down to each site wit
 Both sites and groups support extensive customization. You can specify filters for IP addresses (with CIDR support), domains, or ports to control visibility. Custom styling is available through CSS properties, and icons can be configured using SVG paths. This gives you precise control over how each service appears and when it's displayed.
 
 **Note** To create the configuration for your environment, you can provide the example in `.devcontainer/etc/index/index.json` and list the services you want and the conditions you want to an LLM and have it generate it for you, then customize further to get the final product.
+
+## Credits
+
+While this project supports custom icons, the majority of available icons exist because of the work done by the [selfhst/icons](https://github.com/selfhst/icons) repository. This project depends on and is built upon that work.
 
 ## Development
 
