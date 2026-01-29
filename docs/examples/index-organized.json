@@ -1,0 +1,132 @@
+{
+    "defaults" : {
+        "page" : {
+            "styles": {
+                "background-color": "#181818"
+            }
+        }
+    },
+    "groups" : [
+        {
+            "id": "infrastructure",
+            "image": {
+                "theme": "light"
+            },            
+            "sites": [
+                {
+                    "id": "proxmox",
+                    "description": "Proxmox VE provides an open-source platform for running and managing virtual machines and containers. It combines compute, storage, and networking into a unified interface, with support for clustering, high availability, and integrated backup, enabling efficient and reliable operation of virtualized infrastructure.",
+                    "link": "https://proxmox.core.example.com/",
+                    "styles": {
+                        "background-color": "#D87F3E",
+                        "color": "#2C2A28"
+                    },
+                    "tagline": "Virtualization and container management.",
+                    "title": "Proxmox VE"
+                },
+                {
+                    "id": "traefik",
+                    "description": "Traefik is a modern reverse proxy and load balancer designed for microservices and containerized applications. With automatic service discovery, Let's Encrypt integration, and dynamic configuration, Traefik simplifies routing and SSL management while providing real-time metrics and a clean dashboard for monitoring your entire infrastructure.",
+                    "link": "https://traefik.core.example.com/",
+                    "styles": {
+                        "background-color": "#2A9FD9",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Cloud-native edge router and load balancer.",
+                    "title": "Traefik"
+                },
+                {
+                    "id": "authentik",
+                    "description": "Authentik is a flexible, open-source identity provider that handles authentication and authorization for all your applications. Supporting SAML, OAuth, LDAP, and SCIM, Authentik provides single sign-on, multi-factor authentication, and detailed access policies, giving you complete control over user identity and security across your entire infrastructure.",
+                    "link": "https://authentik.core.example.com/",
+                    "styles": {
+                        "background-color": "#DC4D3D",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Identity provider and SSO platform.",
+                    "title": "Authentik"
+                },
+                {
+                    "id": "uptime-kuma",
+                    "description": "Uptime Kuma provides beautiful, self-hosted monitoring for websites, APIs, and network services. Track uptime, response times, and SSL certificates with customizable alerts via email, Slack, Discord, and more. With its elegant interface and comprehensive notification system, Uptime Kuma ensures you're always aware of your infrastructure's health.",
+                    "link": "https://uptime.core.example.com/",
+                    "styles": {
+                        "background-color": "#5CBA7A",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted uptime monitoring.",
+                    "title": "Uptime Kuma"
+                }
+            ]
+        },
+        {
+            "id": "content-apps",
+            "image": {
+                "theme": "dark"
+            },            
+            "sites": [
+                {
+                    "id": "freshrss",
+                    "description": "FreshRSS is a self-hosted RSS feed aggregator that helps you stay updated with your favorite websites and blogs. With support for thousands of feeds, advanced filtering, and a clean reading interface, FreshRSS organizes the web's content into a personalized news stream. Access your feeds from anywhere with mobile apps, browser extensions, and API support for third-party readers.",
+                    "link": "https://rss.core.example.com/",
+                    "links": {
+                        "android": "https://rss.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#C97B2F",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted RSS feed aggregator.",
+                    "title": "FreshRSS"
+                },
+                {
+                    "id": "linkwarden",
+                    "description": "Linkwarden is a collaborative bookmark manager that helps you organize, preserve, and share web content. Save articles, take snapshots, add tags and collections, and share links with team members. With full-text search, automatic archiving, and browser extensions, Linkwarden ensures your important web content is always accessible.",
+                    "link": "https://links.core.example.com/",
+                    "styles": {
+                        "background-color": "#2C7AC2",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Collaborative bookmark manager.",
+                    "title": "Linkwarden"
+                },
+                {
+                    "id": "mealie",
+                    "description": "Mealie brings smart recipe management to your kitchen. Import recipes from any website, plan meals, generate shopping lists, and organize your culinary collection with tags and categories. With meal planning calendars, nutritional information, and household features, Mealie transforms meal prep into an organized, efficient process.",
+                    "link": "https://recipes.core.example.com/",
+                    "styles": {
+                        "background-color": "#E58325",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Recipe and meal planning platform.",
+                    "title": "Mealie"
+                },
+                {
+                    "id": "stirling-pdf",
+                    "description": "Stirling-PDF provides powerful PDF manipulation tools through a simple web interface. Merge, split, rotate, compress, and convert PDF files without uploading to external services. With OCR, watermarking, form filling, and digital signing capabilities, Stirling-PDF handles all your document processing needs locally and securely.",
+                    "link": "https://pdf.core.example.com/",
+                    "styles": {
+                        "background-color": "#C73E3A",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted PDF manipulation tools.",
+                    "title": "Stirling-PDF"
+                },
+                {
+                    "id": "photoprism",
+                    "description": "PhotoPrism is an AI-powered photo management app that automatically organizes and indexes your picture library. Using machine learning for face recognition, object detection, and location tagging, PhotoPrism makes your entire photo collection searchable and browsable. With timeline views, albums, and privacy-first design, it's a complete photo management solution.",
+                    "link": "https://photos.core.example.com/",
+                    "links": {
+                        "android": "https://photos.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#4E76D6",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "AI-powered photo management.",
+                    "title": "PhotoPrism"
+                }
+            ]
+        }
+    ]    
+}

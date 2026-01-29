@@ -1,0 +1,190 @@
+{
+    "defaults" : {
+        "page" : {
+            "styles": {
+                "background-color": "#1C1C1E"
+            }
+        }
+    },
+    "groups" : [
+        {
+            "id": "network-security",
+            "image": {
+                "theme": "light"
+            },
+            "filters": {
+                "ips": ["192.168.1.0/24", "10.0.0.0/8"]
+            },            
+            "sites": [
+                {
+                    "id": "adguard-home",
+                    "description": "AdGuard Home is a network-wide ad and tracker blocker that operates as a DNS server, filtering unwanted content before it reaches any device on your network. By blocking ads, trackers, and malicious domains at the DNS level, it protects privacy, reduces bandwidth usage, and speeds up browsing across all connected devices. With customizable blocklists, detailed query logs, and a clean dashboard, AdGuard Home provides complete visibility and control over what enters your network.",
+                    "link": "https://adguard.core.example.com/",
+                    "styles": {
+                        "background-color": "#5AB85B",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Network-wide ad and tracker blocking.",
+                    "title": "AdGuard Home"
+                },
+                {
+                    "id": "pihole",
+                    "description": "Pi-hole transforms your network into an ad-free zone by acting as a DNS sinkhole. Block advertisements, tracking domains, and malware across every device on your network without installing software on each one. With detailed statistics, group management, and extensive customization options, Pi-hole provides network-level protection that's both powerful and efficient.",
+                    "link": "https://pihole.core.example.com/",
+                    "styles": {
+                        "background-color": "#96273E",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Network-level advertisement blocking.",
+                    "title": "Pi-hole"
+                },
+                {
+                    "id": "wireguard",
+                    "description": "WireGuard delivers fast, modern, and secure VPN connectivity with minimal configuration. Its lightweight codebase, cutting-edge cryptography, and exceptional performance make it ideal for securely accessing your home network from anywhere. Whether you're protecting your privacy on public Wi-Fi or connecting remote sites, WireGuard provides enterprise-grade security without the complexity.",
+                    "link": "https://wireguard.core.example.com/",
+                    "styles": {
+                        "background-color": "#88171A",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Fast and secure VPN tunnel.",
+                    "title": "WireGuard"
+                }
+            ]
+        },
+        {
+            "id": "development",
+            "image": {
+                "theme": "dark"
+            },            
+            "sites": [
+                {
+                    "id": "gitlab",
+                    "description": "GitLab is an all-in-one DevOps platform that streamlines the entire software lifecycle—from planning and source control to CI/CD, monitoring, and deployment. By consolidating tools and workflows into a single interface, GitLab empowers teams to collaborate efficiently, deliver faster, and maintain complete visibility across every stage of development.",
+                    "link": "https://gitlab.core.example.com/",
+                    "styles": {
+                        "background-color": "#E85426",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Complete DevOps in one platform.",
+                    "title": "GitLab"
+                },
+                {
+                    "id": "gitea",
+                    "description": "Gitea offers lightweight, self-hosted Git service with a familiar interface. Manage repositories, issues, pull requests, and wikis with minimal resource overhead. Perfect for small teams and personal projects, Gitea provides core version control features in a fast, simple package that runs anywhere Docker does.",
+                    "link": "https://gitea.core.example.com/",
+                    "styles": {
+                        "background-color": "#5A966D",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Lightweight self-hosted Git service.",
+                    "title": "Gitea"
+                },
+                {
+                    "id": "code-server",
+                    "description": "Code Server brings Visual Studio Code to your browser, enabling you to code from any device with full access to your development environment. Edit files, run terminals, debug applications, and use your favorite extensions—all through a web interface. Perfect for remote development, pair programming, or accessing your full IDE on devices where native VS Code isn't available.",
+                    "link": "https://code.core.example.com/",
+                    "styles": {
+                        "background-color": "#2C7DC0",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "VS Code in your browser.",
+                    "title": "Code Server"
+                },
+                {
+                    "id": "jenkins",
+                    "description": "Jenkins automates building, testing, and deploying software with a vast ecosystem of plugins and integrations. Create powerful CI/CD pipelines, schedule jobs, and orchestrate complex workflows across your entire development stack. From small personal projects to enterprise deployments, Jenkins provides the automation foundation for continuous delivery.",
+                    "link": "https://jenkins.core.example.com/",
+                    "filters": {
+                        "ports": [443, 8443]
+                    },
+                    "styles": {
+                        "background-color": "#D24939",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Automation server for CI/CD.",
+                    "title": "Jenkins"
+                },
+                {
+                    "id": "docker",
+                    "description": "Docker revolutionizes application deployment by packaging software in portable containers. Build, ship, and run applications consistently across any environment—from laptops to production servers. With Docker, you eliminate 'works on my machine' problems while gaining efficiency, scalability, and simplified dependency management.",
+                    "link": "https://docker.core.example.com/",
+                    "styles": {
+                        "background-color": "#2496ED",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Containerization platform.",
+                    "title": "Docker"
+                },
+                {
+                    "id": "postgres",
+                    "description": "PostgreSQL is a powerful, open-source relational database known for its reliability, feature robustness, and extensibility. Supporting advanced data types, full-text search, JSON storage, and complex queries, PostgreSQL handles everything from small applications to data warehouses. Its strong standards compliance and active community make it a trusted choice for mission-critical workloads.",
+                    "link": "https://postgres.core.example.com/",
+                    "styles": {
+                        "background-color": "#336791",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Advanced open-source database.",
+                    "title": "PostgreSQL"
+                }
+            ]
+        },
+        {
+            "id": "productivity",
+            "image": {
+                "theme": "light"
+            },            
+            "sites": [
+                {
+                    "id": "vaultwarden",
+                    "description": "Vaultwarden is a lightweight, self-hosted implementation of Bitwarden's password manager. Store passwords, secure notes, and sensitive data with end-to-end encryption. Access your vault from any device while maintaining complete control over your data. With browser extensions, mobile apps, and full API compatibility, Vaultwarden delivers enterprise password management without monthly fees or cloud dependencies.",
+                    "link": "https://vaultwarden.core.example.com/",
+                    "links": {
+                        "android": "https://vaultwarden.core.example.com/"
+                    },
+                    "filters": {
+                        "domains": ["vault.example.com", "passwords.example.com"]
+                    },
+                    "styles": {
+                        "background-color": "#175DDC",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted password manager.",
+                    "title": "Vaultwarden"
+                },
+                {
+                    "id": "paperless-ngx",
+                    "description": "Paperless-ngx transforms physical documents into a searchable digital archive. Scan, OCR, tag, and organize all your paperwork with powerful search capabilities and automatic categorization. With full-text search, custom metadata, and mobile scanning apps, Paperless-ngx helps you eliminate paper clutter while making every document instantly accessible.",
+                    "link": "https://paperless.core.example.com/",
+                    "styles": {
+                        "background-color": "#2FB344",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Document management system.",
+                    "title": "Paperless-ngx"
+                },
+                {
+                    "id": "bookstack",
+                    "description": "BookStack provides an intuitive platform for organizing and storing information in a wiki-like structure. Create books, chapters, and pages with a familiar word-processor interface, support for markdown, diagrams, and attachments. Perfect for documentation, knowledge bases, and team wikis, BookStack makes information management simple and accessible.",
+                    "link": "https://bookstack.core.example.com/",
+                    "styles": {
+                        "background-color": "#2C7DC1",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Documentation and wiki platform.",
+                    "title": "BookStack"
+                },
+                {
+                    "id": "grocy",
+                    "description": "Grocy brings smart inventory management to your home. Track groceries, manage recipes, log chores, and reduce food waste with barcode scanning, expiration tracking, and shopping list generation. From meal planning to household task management, Grocy turns your home into an efficiently organized operation with detailed insights and automation.",
+                    "link": "https://grocy.core.example.com/",
+                    "styles": {
+                        "background-color": "#4B88A2",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Grocery and household management.",
+                    "title": "Grocy"
+                }
+            ]
+        }
+    ]    
+}

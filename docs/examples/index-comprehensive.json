@@ -1,0 +1,301 @@
+{
+    "defaults" : {
+        "page" : {
+            "styles": {
+                "background-color": "#1A1B1E"
+            }
+        }
+    },
+    "groups" : [
+        {
+            "id": "infrastructure-core",
+            "image": {
+                "theme": "dark"
+            },            
+            "sites": [
+                {
+                    "id": "proxmox",
+                    "description": "Proxmox VE provides an open-source platform for running and managing virtual machines and containers. It combines compute, storage, and networking into a unified interface, with support for clustering, high availability, and integrated backup, enabling efficient and reliable operation of virtualized infrastructure.",
+                    "link": "https://proxmox.core.example.com/",
+                    "styles": {
+                        "background-color": "#D87F3E",
+                        "color": "#2C2A28"
+                    },
+                    "tagline": "Virtualization and container management.",
+                    "title": "Proxmox VE"
+                },
+                {
+                    "id": "portainer",
+                    "description": "Portainer simplifies container management with an intuitive web interface for Docker and Kubernetes. Monitor resource usage, deploy stacks, manage images, and control your entire containerized infrastructure from a single dashboard. Whether you're running a homelab or managing production workloads, Portainer makes container orchestration accessible and efficient.",
+                    "link": "https://portainer.core.example.com/",
+                    "styles": {
+                        "background-color": "#2B7DE1",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Simplified container management.",
+                    "title": "Portainer"
+                },
+                {
+                    "id": "nginx",
+                    "description": "NGINX serves as a high-performance web server, reverse proxy, and load balancer. Known for its efficiency and low resource usage, NGINX handles thousands of concurrent connections while delivering static content blazingly fast. Its flexible configuration makes it ideal for serving websites, APIs, and as a front-end proxy for microservices architectures.",
+                    "link": "https://nginx.core.example.com/",
+                    "styles": {
+                        "background-color": "#009639",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "High-performance web server.",
+                    "title": "NGINX"
+                },
+                {
+                    "id": "grafana",
+                    "description": "Grafana transforms metrics, logs, and traces into stunning, interactive visualizations. Connect to dozens of data sources, build custom dashboards, set up alerts, and share insights across your organization. From infrastructure monitoring to business analytics, Grafana makes complex data accessible and actionable through beautiful, real-time dashboards.",
+                    "link": "https://grafana.core.example.com/",
+                    "styles": {
+                        "background-color": "#E96228",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Observability and monitoring dashboards.",
+                    "title": "Grafana"
+                },
+                {
+                    "id": "prometheus",
+                    "description": "Prometheus collects and stores time-series metrics with a powerful query language and flexible alerting. Monitor system health, application performance, and business metrics with multi-dimensional data models and efficient storage. As the de facto standard for cloud-native monitoring, Prometheus integrates seamlessly with Kubernetes and provides the foundation for comprehensive observability.",
+                    "link": "https://prometheus.core.example.com/",
+                    "styles": {
+                        "background-color": "#DC4A3D",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Monitoring and alerting toolkit.",
+                    "title": "Prometheus"
+                },
+                {
+                    "id": "netdata",
+                    "description": "Netdata delivers real-time performance monitoring with zero configuration. Track CPU, memory, disk, network, and hundreds of other metrics with per-second granularity. Its distributed architecture, beautiful dashboards, and intelligent alarms provide instant insights into system health without impacting performance or requiring complex setup.",
+                    "link": "https://netdata.core.example.com/",
+                    "styles": {
+                        "background-color": "#00AB44",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Real-time performance monitoring.",
+                    "title": "Netdata"
+                },
+                {
+                    "id": "cloudflare",
+                    "description": "Cloudflare provides global CDN, DDoS protection, and security services that sit between your infrastructure and the internet. Accelerate content delivery, block malicious traffic, and improve website performance with edge caching and intelligent routing. From DNS management to zero-trust security, Cloudflare protects and accelerates your online presence.",
+                    "link": "https://cloudflare.core.example.com/",
+                    "styles": {
+                        "background-color": "#F38020",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Global CDN and security platform.",
+                    "title": "Cloudflare"
+                },
+                {
+                    "id": "ansible",
+                    "description": "Ansible automates infrastructure provisioning, configuration management, and application deployment through simple, human-readable playbooks. Define your infrastructure as code, orchestrate complex workflows, and maintain consistency across thousands of servers—all without agents or additional software on managed nodes. Ansible transforms manual operations into repeatable, version-controlled automation.",
+                    "link": "https://ansible.core.example.com/",
+                    "styles": {
+                        "background-color": "#EE0000",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Infrastructure automation platform.",
+                    "title": "Ansible"
+                }
+            ]
+        },
+        {
+            "id": "media-content",
+            "image": {
+                "theme": "light"
+            },            
+            "sites": [
+                {
+                    "id": "freshrss",
+                    "description": "FreshRSS is a self-hosted RSS feed aggregator that helps you stay updated with your favorite websites and blogs. With support for thousands of feeds, advanced filtering, and a clean reading interface, FreshRSS organizes the web's content into a personalized news stream. Access your feeds from anywhere with mobile apps, browser extensions, and API support for third-party readers.",
+                    "link": "https://rss.core.example.com/",
+                    "links": {
+                        "android": "https://rss.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#C97B2F",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted RSS feed aggregator.",
+                    "title": "FreshRSS"
+                },
+                {
+                    "id": "navidrome",
+                    "description": "Navidrome streams your personal music collection to any device with a modern, Spotify-like interface. Compatible with Subsonic clients, it supports playlists, smart playlists, last.fm scrobbling, and multi-user support. Lightweight and fast, Navidrome turns your music library into a private streaming service you can access anywhere.",
+                    "link": "https://music.core.example.com/",
+                    "links": {
+                        "android": "https://music.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#6B58B5",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Personal music streaming server.",
+                    "title": "Navidrome"
+                },
+                {
+                    "id": "immich",
+                    "description": "Immich provides a self-hosted alternative to Google Photos with automatic photo and video backup from your mobile device. Featuring machine learning-powered facial recognition, object detection, and smart search, Immich organizes your memories while keeping them completely private. With timeline views, albums, and sharing capabilities, it's a complete photo management solution.",
+                    "link": "https://photos.core.example.com/",
+                    "links": {
+                        "android": "https://photos.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#4350AF",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted photo and video backup.",
+                    "title": "Immich"
+                },
+                {
+                    "id": "linkwarden",
+                    "description": "Linkwarden is a collaborative bookmark manager that helps you organize, preserve, and share web content. Save articles, take snapshots, add tags and collections, and share links with team members. With full-text search, automatic archiving, and browser extensions, Linkwarden ensures your important web content is always accessible.",
+                    "link": "https://links.core.example.com/",
+                    "styles": {
+                        "background-color": "#2C7AC2",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Collaborative bookmark manager.",
+                    "title": "Linkwarden"
+                },
+                {
+                    "id": "audiobookshelf",
+                    "description": "AudioBookshelf is a self-hosted audiobook and podcast server. Organize your audio library, track listening progress, and stream content to any device. With support for multiple users, collections, and playback sync across devices, AudioBookshelf turns your audiobook collection into a personal audible alternative.",
+                    "link": "https://audiobooks.core.example.com/",
+                    "links": {
+                        "android": "https://audiobooks.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#CC8F38",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Audiobook and podcast server.",
+                    "title": "AudioBookshelf"
+                }
+            ]
+        },
+        {
+            "id": "productivity-tools",
+            "image": {
+                "theme": "dark"
+            },            
+            "sites": [
+                {
+                    "id": "nextcloud",
+                    "description": "Nextcloud provides a fully self-hosted cloud platform for file storage, collaboration, and communication. With features like file sync, calendar, contacts, document editing, and video calls, Nextcloud offers complete control over your data while delivering enterprise-grade functionality. It's the perfect solution for individuals and teams who value privacy without sacrificing productivity.",
+                    "link": "https://nextcloud.core.example.com/",
+                    "links": {
+                        "android": "https://nextcloud.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#1C76C5",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted productivity and collaboration.",
+                    "title": "Nextcloud"
+                },
+                {
+                    "id": "vaultwarden",
+                    "description": "Vaultwarden is a lightweight, self-hosted implementation of Bitwarden's password manager. Store passwords, secure notes, and sensitive data with end-to-end encryption. Access your vault from any device while maintaining complete control over your data. With browser extensions, mobile apps, and full API compatibility, Vaultwarden delivers enterprise password management without monthly fees or cloud dependencies.",
+                    "link": "https://vault.core.example.com/",
+                    "links": {
+                        "android": "https://vault.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#175DDC",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Self-hosted password manager.",
+                    "title": "Vaultwarden"
+                },
+                {
+                    "id": "calibre-web",
+                    "description": "Calibre-Web provides a clean web interface for browsing, reading, and downloading ebooks from your Calibre database. Send books to Kindle, convert formats on-the-fly, and access your library from any device. With support for OPDS feeds, user management, and reading progress sync, Calibre-Web transforms your ebook collection into a personal digital library.",
+                    "link": "https://books.core.example.com/",
+                    "styles": {
+                        "background-color": "#B88A4F",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Web-based ebook library.",
+                    "title": "Calibre-Web"
+                },
+                {
+                    "id": "notion",
+                    "description": "Notion combines notes, tasks, wikis, and databases into a unified workspace. Create documents with rich formatting, build custom databases, manage projects with kanban boards, and collaborate in real-time. Flexible enough for personal note-taking yet powerful enough for team project management, Notion adapts to how you work.",
+                    "link": "https://notion.core.example.com/",
+                    "links": {
+                        "android": "notion://"
+                    },
+                    "styles": {
+                        "background-color": "#2C2C2C",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "All-in-one workspace.",
+                    "title": "Notion"
+                },
+                {
+                    "id": "standardnotes",
+                    "description": "Standard Notes delivers a simple, secure note-taking experience with end-to-end encryption. Sync your thoughts across all devices knowing that your notes are completely private. With extensions for markdown, code editing, spreadsheets, and more, Standard Notes provides a distraction-free writing environment that respects your privacy.",
+                    "link": "https://notes.core.example.com/",
+                    "links": {
+                        "android": "https://notes.core.example.com/"
+                    },
+                    "styles": {
+                        "background-color": "#2D6EE6",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Encrypted note-taking app.",
+                    "title": "Standard Notes"
+                },
+                {
+                    "id": "memos",
+                    "description": "Memos offers a lightweight, self-hosted memo hub for capturing thoughts and ideas quickly. With markdown support, tagging, and search functionality, Memos makes it easy to jot down quick notes and find them later. Its minimalist design focuses on speed and simplicity, perfect for daily journaling and fleeting thoughts.",
+                    "link": "https://memos.core.example.com/",
+                    "styles": {
+                        "background-color": "#4E9FD9",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Lightweight self-hosted memo hub.",
+                    "title": "Memos"
+                }
+            ]
+        },
+        {
+            "id": "smart-home",
+            "image": {
+                "theme": "light"
+            },            
+            "sites": [
+                {
+                    "id": "home-assistant",
+                    "description": "Home Assistant is a powerful, privacy-focused home automation platform that puts you in full control of your smart devices. By unifying sensors, switches, lights, media players, and integrations into a single interface, Home Assistant empowers you to build automations, monitor your home, and create a seamless, intelligent living environment—all without relying on cloud services.",
+                    "link": "https://homeassistant.core.example.com/",
+                    "links": {
+                        "android": "homeassistant://"
+                    },
+                    "styles": {
+                        "background-color": "#41BDF5",
+                        "color": "#2C2A28"
+                    },
+                    "tagline": "Local automation for smart devices.",
+                    "title": "Home Assistant"
+                },
+                {
+                    "id": "node-red",
+                    "description": "Node-RED provides flow-based programming for wiring together hardware devices, APIs, and online services. Its browser-based editor makes it easy to create automation flows using a visual interface. Perfect for IoT projects, home automation, and data processing, Node-RED connects disparate systems with minimal coding required.",
+                    "link": "https://nodered.core.example.com/",
+                    "styles": {
+                        "background-color": "#8F0000",
+                        "color": "#F5F5F5"
+                    },
+                    "tagline": "Flow-based automation programming.",
+                    "title": "Node-RED"
+                }
+            ]
+        }
+    ]    
+}
