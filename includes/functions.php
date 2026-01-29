@@ -248,15 +248,39 @@ function filter_sites_by_domain($sites, $domain = null) {
 
 }
 
+function get_client_ip() {
+    
+    # check proxy headers first
+    $headers = [
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_REAL_IP',
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_CLIENT_IP'
+    ];
+    foreach( $headers as $header ){
+        if( isset($_SERVER[$header]) && ! empty($_SERVER[$header]) ){
+            # X-Forwarded-For can contain multiple IPs, use the first one
+            $ip = trim(explode(',', $_SERVER[$header])[0]);
+            if( filter_var($ip, FILTER_VALIDATE_IP) ){
+                return $ip;
+            }
+        }
+    }
+    
+    # fallback to REMOTE_ADDR
+    if( isset($_SERVER['REMOTE_ADDR']) ){
+        return $_SERVER['REMOTE_ADDR'];
+    }
+    
+    # default fallback
+    return '127.0.0.1';
+}
+
 function filter_sites_by_ip($sites, $ip = null) {
 
     # set ip if not set
     if( $ip === null ){
-        if( isset($_SERVER['REMOTE_ADDR']) ){
-            $ip = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ip = '127.0.0.1';
-        }
+        $ip = get_client_ip();
     }
 
     # determine ip version and filter accordingly
@@ -275,11 +299,7 @@ function filter_sites_by_ipv4($sites, $ipv4 = null) {
 
     # set ipv4 if not set
     if( $ipv4 === null ){
-        if( isset($_SERVER['REMOTE_ADDR']) ){
-            $ipv4 = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ipv4 = '127.0.0.1';
-        }
+        $ipv4 = get_client_ip();
     }
 
     # validate ipv4
@@ -320,11 +340,7 @@ function filter_sites_by_ipv6($sites, $ipv6 = null) {
 
     # set ipv6 if not set
     if( $ipv6 === null ){
-        if( isset($_SERVER['REMOTE_ADDR']) ){
-            $ipv6 = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ipv6 = '::1';
-        }
+        $ipv6 = get_client_ip();
     }
 
     # validate ipv6
