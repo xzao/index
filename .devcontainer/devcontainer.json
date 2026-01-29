@@ -1,5 +1,5 @@
 {
-	"name": "Index",
+	"name": "Index Core Server",
 	"image": "mcr.microsoft.com/devcontainers/php:0-8.2-bullseye",
 	"customizations": {
 		"vscode": {
