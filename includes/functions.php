@@ -930,7 +930,43 @@ function print_debug($config, $sites) {
 #
 #   render[er]s
 #
-function render_widget_title_html($widget, $html = '') {
+function calculate_widget_title_columns($site_count) {
+
+    # calculate columns needed to fill empty space on each screen size
+    
+    # xl screens: 3 items per row (each site = 4 cols)
+    $xl_items_per_row = 3;
+    $xl_empty_slots = ($xl_items_per_row - ($site_count % $xl_items_per_row)) % $xl_items_per_row;
+    $xl_cols = $xl_empty_slots * 4; # 0 if no empty slots
+    
+    # large screens: 2 items per row (each site = 6 cols)
+    $l_items_per_row = 2;
+    $l_empty_slots = ($l_items_per_row - ($site_count % $l_items_per_row)) % $l_items_per_row;
+    $l_cols = $l_empty_slots * 6; # 0 if no empty slots
+    
+    # medium and small: always full width
+    $m_cols = 12;
+    $s_cols = 12;
+    
+    # return
+    return array(
+        'xl' => $xl_cols,
+        'l' => $l_cols,
+        'm' => $m_cols,
+        's' => $s_cols
+    );
+
+}
+
+function render_widget_title_html($widget, $site_count, $html = '') {
+
+    # calculate dynamic column widths based on site count
+    $cols = calculate_widget_title_columns($site_count);
+
+    # if no columns needed (all slots filled), don't render
+    if( $cols['xl'] === 0 && $cols['l'] === 0 ){
+        return '';
+    }
 
     # get display text - use widget text if set, otherwise use hostname
     if( isset($widget['text']) && ! empty($widget['text']) ){
@@ -959,8 +995,8 @@ function render_widget_title_html($widget, $html = '') {
         }
     }
 
-    # html build - takes up 2x space (xl8 instead of xl4)
-    $html .= '<div class="col s12 m12 l12 xl8' . $hide_classes . '">';
+    # html build - dynamic width based on site count
+    $html .= '<div class="col s' . $cols['s'] . ' m' . $cols['m'] . ' l' . $cols['l'] . ' xl' . $cols['xl'] . $hide_classes . '">';
     $html .= '    <div class="card widget-title" style="' . $styles . '">';
     $html .= '        <div>';
     $html .= '            <div class="widget-title-text">' . htmlspecialchars($display_text) . '</div>';

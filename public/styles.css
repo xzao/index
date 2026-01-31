@@ -135,6 +135,8 @@ body.tablet .card .card-content {
     border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .widget-title::before {
@@ -151,7 +153,7 @@ body.tablet .card .card-content {
 }
 
 .widget-title .widget-title-text {
-    font-size: 36px;
+    font-size: 48px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
@@ -161,6 +163,11 @@ body.tablet .card .card-content {
     z-index: 1;
     padding: 40px;
     text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.widget-title:hover .widget-title-text {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Responsive adjustments */
@@ -175,7 +182,7 @@ body.tablet .card .card-content {
         min-height: 938px;
     }
     .widget-title .widget-title-text {
-        font-size: 24px;
+        font-size: 32px;
         letter-spacing: 2px;
     }
 }

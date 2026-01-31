@@ -1,8 +1,19 @@
 {
     "defaults" : {
+        "body" : {
+            "styles": {
+                "background-color": "#181818"
+            }
+        },
         "page" : {
             "styles": {
                 "background-color": "#181818"
+            }
+        },
+        "widget" : {
+            "styles": {
+                "background-color": "#2a2a2a",
+                "color": "#F5F5F5"
             }
         }
     },
@@ -11,7 +22,17 @@
             "id": "infrastructure",
             "image": {
                 "theme": "light"
-            },            
+            },
+            "widgets": [
+                {
+                    "id": "title",
+                    "hide": ["mobile"],
+                    "styles": {
+                        "background-color": "#2a2a2a",
+                        "color": "#F5F5F5"
+                    }
+                }
+            ],
             "sites": [
                 {
                     "id": "proxmox",

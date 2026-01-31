@@ -55,17 +55,17 @@
         <div class="page" style="<?php echo $page_style; ?>">
             <div class="row">
                 
-                <?php if( $title_widget !== null ){ ?>
-
-                    <!-- widget: title -->
-                    <?php echo render_widget_title_html($title_widget); ?>
-
-                <?php } ?>
-
                 <?php foreach( $sites as $site ){ ?>
 
                     <!-- site -->
                     <?php echo render_site_html($site); ?>
+
+                <?php } ?>
+
+                <?php if( $title_widget !== null ){ ?>
+
+                    <!-- widget: title -->
+                    <?php echo render_widget_title_html($title_widget, count($sites)); ?>
 
                 <?php } ?>
             </div>
