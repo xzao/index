@@ -5,6 +5,13 @@
     transition: opacity 0.6s ease-out, filter 0.6s ease-out;
 }
 
+/* Custom responsive hide classes */
+@media only screen and (min-width: 1201px) {
+    .hide-on-extra-large-only {
+        display: none !important;
+    }
+}
+
 body, html {
     min-width: 280px;
     overflow-y: scroll;
@@ -88,6 +95,11 @@ body.mobile .card .card-desc {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0.7;
     font-weight: 500;
+    font-size: 14px;
+}
+.card .card-tagline {
+    min-height: 2.8em;
+    line-height: 1.4em;
 }
 body.tablet .card .card-content {
     min-height: 408px;
@@ -168,21 +180,4 @@ body.tablet .card .card-content {
 
 .widget-title:hover .widget-title-text {
     color: rgba(255, 255, 255, 0.7);
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .widget-title {
-        min-height: 938px;
-    }
-}
-
-@media (max-width: 600px) {
-    .widget-title {
-        min-height: 938px;
-    }
-    .widget-title .widget-title-text {
-        font-size: 32px;
-        letter-spacing: 2px;
-    }
 }

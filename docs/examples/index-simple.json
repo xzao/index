@@ -27,7 +27,9 @@
                 {
                     "id": "title",
                     "text": "Home Lab",
-                    "hide": ["mobile"]
+                    "filters": {
+                        "columns": [2, 3, 4]
+                    }
                 }
             ],
             "sites": [

@@ -26,7 +26,9 @@
             "widgets": [
                 {
                     "id": "title",
-                    "hide": ["mobile"],
+                    "filters": {
+                        "columns": [2, 3, 4]
+                    },
                     "styles": {
                         "background-color": "#2a2a2a",
                         "color": "#F5F5F5"

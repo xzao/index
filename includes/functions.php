@@ -934,18 +934,22 @@ function calculate_widget_title_columns($site_count) {
 
     # calculate columns needed to fill empty space on each screen size
     
-    # xl screens: 3 items per row (each site = 4 cols)
-    $xl_items_per_row = 3;
+    # xl screens: 4 items per row (each site = 3 cols)
+    $xl_items_per_row = 4;
     $xl_empty_slots = ($xl_items_per_row - ($site_count % $xl_items_per_row)) % $xl_items_per_row;
-    $xl_cols = $xl_empty_slots * 4; # 0 if no empty slots
+    $xl_cols = $xl_empty_slots * 3; # 0 if no empty slots
     
-    # large screens: 2 items per row (each site = 6 cols)
-    $l_items_per_row = 2;
+    # large screens: 3 items per row (each site = 4 cols)
+    $l_items_per_row = 3;
     $l_empty_slots = ($l_items_per_row - ($site_count % $l_items_per_row)) % $l_items_per_row;
-    $l_cols = $l_empty_slots * 6; # 0 if no empty slots
+    $l_cols = $l_empty_slots * 4; # 0 if no empty slots
     
-    # medium and small: always full width
-    $m_cols = 12;
+    # medium screens: 2 items per row (each site = 6 cols)
+    $m_items_per_row = 2;
+    $m_empty_slots = ($m_items_per_row - ($site_count % $m_items_per_row)) % $m_items_per_row;
+    $m_cols = $m_empty_slots * 6; # 0 if no empty slots
+    
+    # small screens: always full width
     $s_cols = 12;
     
     # return
@@ -958,13 +962,48 @@ function calculate_widget_title_columns($site_count) {
 
 }
 
+function get_column_filter_classes($item) {
+
+    # get filter columns if set
+    $filter_columns = isset($item['filters']['columns']) && is_array($item['filters']['columns']) 
+        ? $item['filters']['columns'] 
+        : array();
+
+    # if no filter, show on all screens
+    if( empty($filter_columns) ){
+        return '';
+    }
+
+    # map column counts to screen sizes
+    # 1 column = small (s12), 2 columns = medium (m6), 3 columns = large (l4), 4 columns = xl (xl3)
+    $hide_classes = '';
+    
+    # hide on screens not in filter
+    if( ! in_array(1, $filter_columns) ){
+        $hide_classes .= ' hide-on-small-only';
+    }
+    if( ! in_array(2, $filter_columns) ){
+        $hide_classes .= ' hide-on-med-only';
+    }
+    if( ! in_array(3, $filter_columns) ){
+        $hide_classes .= ' hide-on-large-only';
+    }
+    if( ! in_array(4, $filter_columns) ){
+        $hide_classes .= ' hide-on-extra-large-only';
+    }
+
+    # return
+    return $hide_classes;
+
+}
+
 function render_widget_title_html($widget, $site_count, $html = '') {
 
     # calculate dynamic column widths based on site count
     $cols = calculate_widget_title_columns($site_count);
 
     # if no columns needed (all slots filled), don't render
-    if( $cols['xl'] === 0 && $cols['l'] === 0 ){
+    if( $cols['xl'] === 0 && $cols['l'] === 0 && $cols['m'] === 0 ){
         return '';
     }
 
@@ -983,20 +1022,11 @@ function render_widget_title_html($widget, $site_count, $html = '') {
     # get styles
     $styles = isset($widget['styles']) ? collapse_styles_to_style($widget['styles']) : '';
 
-    # get hide classes from hide config
-    $hide_classes = '';
-    if( isset($widget['hide']) && is_array($widget['hide']) ){
-        foreach( $widget['hide'] as $screen ){
-            if( $screen === 'mobile' ){
-                $hide_classes .= ' hide-on-small-only';
-            } elseif( $screen === 'desktop' ){
-                $hide_classes .= ' hide-on-med-and-up';
-            }
-        }
-    }
+    # get column filter classes
+    $filter_classes = get_column_filter_classes($widget);
 
     # html build - dynamic width based on site count
-    $html .= '<div class="col s' . $cols['s'] . ' m' . $cols['m'] . ' l' . $cols['l'] . ' xl' . $cols['xl'] . $hide_classes . '">';
+    $html .= '<div class="col s' . $cols['s'] . ' m' . $cols['m'] . ' l' . $cols['l'] . ' xl' . $cols['xl'] . $filter_classes . '">';
     $html .= '    <div class="card widget-title" style="' . $styles . '">';
     $html .= '        <div>';
     $html .= '            <div class="widget-title-text">' . htmlspecialchars($display_text) . '</div>';
@@ -1011,8 +1041,11 @@ function render_widget_title_html($widget, $site_count, $html = '') {
 
 function render_site_html($site, $html = '') {
 
-    # html build
-    $html .= '<div class="col s12 m12 l6 xl4 ' . collapse_classes_to_class($site['classes']) . '">';
+    # get column filter classes
+    $filter_classes = get_column_filter_classes($site);
+
+    # html build - new column layout: s12 m6 l4 xl3 (1, 2, 3, 4 per row)
+    $html .= '<div class="col s12 m6 l4 xl3 ' . collapse_classes_to_class($site['classes']) . $filter_classes . '">';
     $html .= '    <a href=' . $site['link'] . '>                        ';
     $html .= '        <div class="card" style="'. collapse_styles_to_style($site['styles']) . '">';
     $html .= '            <div class="card-image darken">';
@@ -1023,7 +1056,6 @@ function render_site_html($site, $html = '') {
     $html .= '                <p class="card-tagline">';
     $html .= '                   ' . $site['tagline'] . '';
     $html .= '                </p>';
-    $html .= '                <br />';
     $html .= '                <p class="card-desc">';
     $html .= '                   ' . $site['description'] . '';
     $html .= '                </p>';
