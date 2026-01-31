@@ -1,5 +1,10 @@
 {
     "defaults" : {
+        "body" : {
+            "styles": {
+                "background-color": "#1D1D1D"
+            }
+        },
         "page" : {
             "styles": {
                 "background-color": "#1D1D1D"
