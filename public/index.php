@@ -9,6 +9,9 @@
     # site[s]
     $sites = get_sites($config);
 
+    # widget[s]
+    $title_widget = get_widget($config, 'title');
+
     # body
     $body_styles = get_body_styles($config);
     $body_style  = collapse_styles_to_style($body_styles);
@@ -51,6 +54,14 @@
         <!-- container -->
         <div class="page" style="<?php echo $page_style; ?>">
             <div class="row">
+                
+                <?php if( $title_widget !== null ){ ?>
+
+                    <!-- widget: title -->
+                    <?php echo render_widget_title_html($title_widget); ?>
+
+                <?php } ?>
+
                 <?php foreach( $sites as $site ){ ?>
 
                     <!-- site -->

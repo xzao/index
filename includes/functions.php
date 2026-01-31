@@ -731,6 +731,49 @@ function get_sites($config) {
 
 }
 
+function get_widget($config, $widget_id) {
+
+    # check config
+    if( ! isset($config['groups']) ){
+        return null;
+    }
+
+    # check each group for widgets
+    foreach( $config['groups'] as $group ){
+        
+        # check group has widgets
+        if( ! isset($group['widgets']) || ! is_array($group['widgets']) ){
+            continue;
+        }
+
+        # check for matching widget id
+        foreach( $group['widgets'] as $widget ){
+            if( isset($widget['id']) && $widget['id'] === $widget_id ){
+                
+                # start with DEFAULT_WIDGET constant as base
+                $merged = DEFAULT_WIDGET;
+                
+                # merge config defaults on top
+                if( isset($config['defaults']['widget']) ){
+                    $merged = array_merge($merged, $config['defaults']['widget']);
+                }
+                
+                # merge widget-specific config on top
+                $merged = array_merge($merged, $widget);
+                
+                # return
+                return $merged;
+
+            }
+        }
+
+    }
+
+    # return
+    return null;
+
+}
+
 function get_title() {
 
     # check required
@@ -887,6 +930,49 @@ function print_debug($config, $sites) {
 #
 #   render[er]s
 #
+function render_widget_title_html($widget, $html = '') {
+
+    # get display text - use widget text if set, otherwise use hostname
+    if( isset($widget['text']) && ! empty($widget['text']) ){
+        $display_text = $widget['text'];
+    } else {
+        # get hostname from server
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $hostname = explode(':', $host)[0];
+        
+        # clean hostname for display
+        $display_text = str_replace('www.', '', $hostname);
+    }
+
+    # get styles
+    $styles = isset($widget['styles']) ? collapse_styles_to_style($widget['styles']) : '';
+
+    # get hide classes from hide config
+    $hide_classes = '';
+    if( isset($widget['hide']) && is_array($widget['hide']) ){
+        foreach( $widget['hide'] as $screen ){
+            if( $screen === 'mobile' ){
+                $hide_classes .= ' hide-on-small-only';
+            } elseif( $screen === 'desktop' ){
+                $hide_classes .= ' hide-on-med-and-up';
+            }
+        }
+    }
+
+    # html build - takes up 2x space (xl8 instead of xl4)
+    $html .= '<div class="col s12 m12 l12 xl8' . $hide_classes . '">';
+    $html .= '    <div class="card widget-title" style="' . $styles . '">';
+    $html .= '        <div>';
+    $html .= '            <div class="widget-title-text">' . htmlspecialchars($display_text) . '</div>';
+    $html .= '        </div>';
+    $html .= '    </div>';
+    $html .= '</div>';
+
+    # return
+    return $html;
+
+}
+
 function render_site_html($site, $html = '') {
 
     # html build
