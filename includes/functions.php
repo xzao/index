@@ -974,22 +974,22 @@ function get_column_filter_classes($item) {
         return '';
     }
 
-    # map column counts to screen sizes
-    # 1 column = small (s12), 2 columns = medium (m6), 3 columns = large (l4), 4 columns = xl (xl3)
+    # map column counts to custom hide classes
+    # 1 column = 0-750px, 2 columns = 751-1240px, 3 columns = 1241-1749px, 4 columns = 1750px+
     $hide_classes = '';
     
     # hide on screens not in filter
     if( ! in_array(1, $filter_columns) ){
-        $hide_classes .= ' hide-on-small-only';
+        $hide_classes .= ' hide-on-1col';
     }
     if( ! in_array(2, $filter_columns) ){
-        $hide_classes .= ' hide-on-med-only';
+        $hide_classes .= ' hide-on-2col';
     }
     if( ! in_array(3, $filter_columns) ){
-        $hide_classes .= ' hide-on-large-only';
+        $hide_classes .= ' hide-on-3col';
     }
     if( ! in_array(4, $filter_columns) ){
-        $hide_classes .= ' hide-on-extra-large-only';
+        $hide_classes .= ' hide-on-4col';
     }
 
     # return
