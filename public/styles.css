@@ -5,8 +5,59 @@
     transition: opacity 0.6s ease-out, filter 0.6s ease-out;
 }
 
-/* Custom responsive hide classes */
-@media only screen and (min-width: 1201px) {
+/* Custom responsive breakpoints - 25% larger than default */
+/* Default Materialize: s=0-600, m=601-992, l=993-1200, xl=1201+ */
+/* New breakpoints: s=0-750, m=751-1240, l=1241-1500, xl=1501+ */
+
+/* Medium breakpoint override (751px instead of 601px) */
+@media only screen and (max-width: 750px) {
+    .col.m6, .col.m12 {
+        width: 100% !important;
+    }
+}
+@media only screen and (min-width: 751px) {
+    .col.m6 {
+        width: 50% !important;
+    }
+    .col.m12 {
+        width: 100% !important;
+    }
+}
+
+/* Large breakpoint override (1241px instead of 993px) */
+@media only screen and (max-width: 1240px) {
+    .col.l4, .col.l6, .col.l12 {
+        width: auto;
+    }
+}
+@media only screen and (min-width: 1241px) {
+    .col.l4 {
+        width: 33.3333333333% !important;
+    }
+    .col.l6 {
+        width: 50% !important;
+    }
+    .col.l12 {
+        width: 100% !important;
+    }
+}
+
+/* Extra large breakpoint override (1750px instead of 1201px) - gives 3 columns 15% more room */
+@media only screen and (max-width: 1749px) {
+    .col.xl3, .col.xl4, .col.xl8 {
+        width: auto;
+    }
+}
+@media only screen and (min-width: 1750px) {
+    .col.xl3 {
+        width: 25% !important;
+    }
+    .col.xl4 {
+        width: 33.3333333333% !important;
+    }
+    .col.xl8 {
+        width: 66.6666666667% !important;
+    }
     .hide-on-extra-large-only {
         display: none !important;
     }
@@ -38,6 +89,7 @@ body.tablet .card .card-desc {
 body.mobile .card .card-desc {
     min-height: 260px !important;
 }
+
 
 
 .row {
@@ -185,13 +237,7 @@ body.tablet .card .card-content {
 }
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
-    .widget-title {
-        min-height: 938px;
-    }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     .widget-title {
         min-height: 938px;
     }
