@@ -165,7 +165,7 @@ body.tablet .card .card-content {
 }
 
 .widget-title .widget-title-text {
-    font-size: 48px;
+    font-size: clamp(10px, 2.5vw, 24px);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
@@ -176,8 +176,27 @@ body.tablet .card .card-content {
     padding: 40px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .widget-title:hover .widget-title-text {
     color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .widget-title {
+        min-height: 938px;
+    }
+}
+
+@media (max-width: 600px) {
+    .widget-title {
+        min-height: 938px;
+    }
+    .widget-title .widget-title-text {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
 }
