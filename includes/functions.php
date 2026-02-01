@@ -930,34 +930,62 @@ function print_debug($config, $sites) {
 #
 #   render[er]s
 #
-function calculate_widget_title_columns($site_count) {
+function calculate_widget_title_columns($site_count, $widget) {
+
+    # get filter columns to determine where widget should show
+    $filter_columns = isset($widget['filters']['columns']) && is_array($widget['filters']['columns']) 
+        ? $widget['filters']['columns'] 
+        : array(1, 2, 3, 4); # default: show on all
 
     # calculate columns needed to fill empty space on each screen size
+    # only calculate if widget is allowed on that layout
     
-    # xl screens: 4 items per row (each site = 3 cols)
-    $xl_items_per_row = 4;
-    $xl_empty_slots = ($xl_items_per_row - ($site_count % $xl_items_per_row)) % $xl_items_per_row;
-    $xl_cols = $xl_empty_slots * 3; # 0 if no empty slots
-    
-    # large screens: 3 items per row (each site = 4 cols)
-    $l_items_per_row = 3;
-    $l_empty_slots = ($l_items_per_row - ($site_count % $l_items_per_row)) % $l_items_per_row;
-    $l_cols = $l_empty_slots * 4; # 0 if no empty slots
+    # small screens: 1 item per row (each site = 12 cols)
+    $s_items_per_row = 1;
+    $s_col_width = 12;
+    if( in_array(1, $filter_columns) ){
+        $s_empty_slots = ($s_items_per_row - ($site_count % $s_items_per_row)) % $s_items_per_row;
+        $s_cols = $s_empty_slots * $s_col_width;
+    } else {
+        $s_cols = 0;
+    }
     
     # medium screens: 2 items per row (each site = 6 cols)
     $m_items_per_row = 2;
-    $m_empty_slots = ($m_items_per_row - ($site_count % $m_items_per_row)) % $m_items_per_row;
-    $m_cols = $m_empty_slots * 6; # 0 if no empty slots
+    $m_col_width = 6;
+    if( in_array(2, $filter_columns) ){
+        $m_empty_slots = ($m_items_per_row - ($site_count % $m_items_per_row)) % $m_items_per_row;
+        $m_cols = $m_empty_slots * $m_col_width;
+    } else {
+        $m_cols = 0;
+    }
     
-    # small screens: always full width
-    $s_cols = 12;
+    # large screens: 3 items per row (each site = 4 cols)
+    $l_items_per_row = 3;
+    $l_col_width = 4;
+    if( in_array(3, $filter_columns) ){
+        $l_empty_slots = ($l_items_per_row - ($site_count % $l_items_per_row)) % $l_items_per_row;
+        $l_cols = $l_empty_slots * $l_col_width;
+    } else {
+        $l_cols = 0;
+    }
+    
+    # xl screens: 4 items per row (each site = 3 cols)
+    $xl_items_per_row = 4;
+    $xl_col_width = 3;
+    if( in_array(4, $filter_columns) ){
+        $xl_empty_slots = ($xl_items_per_row - ($site_count % $xl_items_per_row)) % $xl_items_per_row;
+        $xl_cols = $xl_empty_slots * $xl_col_width;
+    } else {
+        $xl_cols = 0;
+    }
     
     # return
     return array(
-        'xl' => $xl_cols,
-        'l' => $l_cols,
+        's' => $s_cols,
         'm' => $m_cols,
-        's' => $s_cols
+        'l' => $l_cols,
+        'xl' => $xl_cols
     );
 
 }
@@ -1000,7 +1028,7 @@ function get_column_filter_classes($item) {
 function render_widget_title_html($widget, $site_count, $html = '') {
 
     # calculate dynamic column widths based on site count
-    $cols = calculate_widget_title_columns($site_count);
+    $cols = calculate_widget_title_columns($site_count, $widget);
 
     # if no columns needed (all slots filled), don't render
     if( $cols['xl'] === 0 && $cols['l'] === 0 && $cols['m'] === 0 ){
@@ -1025,8 +1053,22 @@ function render_widget_title_html($widget, $site_count, $html = '') {
     # get column filter classes
     $filter_classes = get_column_filter_classes($widget);
 
+    # calculate dynamic width percentages
+    $s_width = ($cols['s'] / 12) * 100;
+    $m_width = ($cols['m'] / 12) * 100;
+    $l_width = ($cols['l'] / 12) * 100;
+    $xl_width = ($cols['xl'] / 12) * 100;
+
+    # inject style tag for dynamic responsive widths
+    $html .= '<style>';
+    $html .= '.widget-title-dynamic { width: ' . $s_width . '% !important; }';
+    $html .= '@media (min-width: 751px) and (max-width: 1240px) { .widget-title-dynamic { width: ' . $m_width . '% !important; } }';
+    $html .= '@media (min-width: 1241px) and (max-width: 1749px) { .widget-title-dynamic { width: ' . $l_width . '% !important; } }';
+    $html .= '@media (min-width: 1750px) { .widget-title-dynamic { width: ' . $xl_width . '% !important; } }';
+    $html .= '</style>';
+
     # html build - dynamic width based on site count
-    $html .= '<div class="col s' . $cols['s'] . ' m' . $cols['m'] . ' l' . $cols['l'] . ' xl' . $cols['xl'] . $filter_classes . '">';
+    $html .= '<div class="col widget-title-dynamic' . $filter_classes . '">';
     $html .= '    <div class="card widget-title" style="' . $styles . '">';
     $html .= '        <div>';
     $html .= '            <div class="widget-title-text">' . htmlspecialchars($display_text) . '</div>';

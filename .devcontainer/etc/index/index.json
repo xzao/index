@@ -16,7 +16,8 @@
             "id": "example",
             "filters": {
                 "domains": [
-                    "127.0.0.1"
+                    "127.0.0.1",
+                    "localhost"
                 ]
             },            
             "image": {
