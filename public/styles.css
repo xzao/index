@@ -245,26 +245,13 @@ body.tablet .card .card-content {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.widget-title::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
-    pointer-events: none;
-}
 
 .widget-title .widget-title-text {
-    font-size: clamp(10px, 2.5vw, 24px);
+    font-size: clamp(7px, 2vw, 18px);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     letter-spacing: 3px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
     padding: 40px;
@@ -284,7 +271,7 @@ body.tablet .card .card-content {
         min-height: 938px;
     }
     .widget-title .widget-title-text {
-        font-size: 16px;
+        font-size: 12px;
         letter-spacing: 2px;
     }
 }
