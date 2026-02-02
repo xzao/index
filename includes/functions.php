@@ -1003,7 +1003,7 @@ function get_column_filter_classes($item) {
     }
 
     # map column counts to custom hide classes
-    # 1 column = 0-750px, 2 columns = 751-1240px, 3 columns = 1241-1749px, 4 columns = 1750px+
+    # 1 column = 0-750px, 2 columns = 751-1240px, 3 columns = 1241-2799px, 4 columns = 2800px+
     $hide_classes = '';
     
     # hide on screens not in filter
@@ -1063,8 +1063,8 @@ function render_widget_title_html($widget, $site_count, $html = '') {
     $html .= '<style>';
     $html .= '.widget-title-dynamic { width: ' . $s_width . '% !important; }';
     $html .= '@media (min-width: 751px) and (max-width: 1240px) { .widget-title-dynamic { width: ' . $m_width . '% !important; } }';
-    $html .= '@media (min-width: 1241px) and (max-width: 1749px) { .widget-title-dynamic { width: ' . $l_width . '% !important; } }';
-    $html .= '@media (min-width: 1750px) { .widget-title-dynamic { width: ' . $xl_width . '% !important; } }';
+    $html .= '@media (min-width: 1241px) and (max-width: 2799px) { .widget-title-dynamic { width: ' . $l_width . '% !important; } }';
+    $html .= '@media (min-width: 2800px) { .widget-title-dynamic { width: ' . $xl_width . '% !important; } }';
     $html .= '</style>';
 
     # html build - dynamic width based on site count

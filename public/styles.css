@@ -15,12 +15,12 @@
         display: none !important;
     }
 }
-@media only screen and (min-width: 1241px) and (max-width: 1749px) {
+@media only screen and (min-width: 1241px) and (max-width: 2799px) {
     .hide-on-3col {
         display: none !important;
     }
 }
-@media only screen and (min-width: 1750px) {
+@media only screen and (min-width: 2800px) {
     .hide-on-4col {
         display: none !important;
     }
@@ -51,8 +51,8 @@
     }
 }
 
-/* 3 Column Layout: 1241-1749px (Desktop) */
-@media only screen and (min-width: 1241px) and (max-width: 1749px) {
+/* 3 Column Layout: 1241-2799px (Desktop) */
+@media only screen and (min-width: 1241px) and (max-width: 2799px) {
     .col.s12 {
         width: 100% !important;
     }
@@ -76,8 +76,8 @@
     }
 }
 
-/* 4 Column Layout: 1750px+ (Large Desktop) */
-@media only screen and (min-width: 1750px) {
+/* 4 Column Layout: 2800px+ (Large Desktop) */
+@media only screen and (min-width: 2800px) {
     .col.s12 {
         width: 100% !important;
     }
