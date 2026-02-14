@@ -32,11 +32,3 @@
         "background-color" => "#1C2833",
         "color" => "#F5F5F5"
     ));
-
-    # config default widget
-    define( 'DEFAULT_WIDGET', array(
-        'styles' => array(
-            "background-color" => "#2a2a2a",
-            "color" => "#F5F5F5"
-        )
-    ));

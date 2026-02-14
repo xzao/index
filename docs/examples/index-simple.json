@@ -1,78 +1,63 @@
 {
-    "defaults" : {
-        "body" : {
-            "styles": {
-                "background-color": "#1A1A1A"
-            }
-        },
-        "page" : {
-            "styles": {
-                "background-color": "#1A1A1A"
-            }
-        },
-        "widget" : {
-            "styles": {
-                "background-color": "#2a2a2a",
-                "color": "#F5F5F5"
-            }
-        }
+  "defaults": {
+    "body": {
+      "styles": {
+        "background-color": "#1A1A1A"
+      }
     },
-    "groups" : [
+    "page": {
+      "styles": {
+        "background-color": "#1A1A1A"
+      }
+    }
+  },
+  "groups": [
+    {
+      "id": "essentials",
+      "image": {
+        "theme": "dark"
+      },
+      "sites": [
         {
-            "id": "essentials",
-            "image": {
-                "theme": "dark"
-            },
-            "widgets": [
-                {
-                    "id": "title",
-                    "text": "Home Lab",
-                    "filters": {
-                        "columns": [2, 3, 4]
-                    }
-                }
-            ],
-            "sites": [
-                {
-                    "id": "freshrss",
-                    "description": "FreshRSS is a self-hosted RSS feed aggregator that helps you stay updated with your favorite websites and blogs. With support for thousands of feeds, advanced filtering, and a clean reading interface, FreshRSS organizes the web's content into a personalized news stream. Access your feeds from anywhere with mobile apps, browser extensions, and API support for third-party readers.",
-                    "link": "https://rss.core.example.com/",
-                    "links": {
-                        "android": "https://rss.core.example.com/"
-                    },
-                    "styles": {
-                        "background-color": "#C97B2F",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Self-hosted RSS feed aggregator.",
-                    "title": "FreshRSS"
-                },
-                {
-                    "id": "nextcloud",
-                    "description": "Nextcloud provides a fully self-hosted cloud platform for file storage, collaboration, and communication. With features like file sync, calendar, contacts, document editing, and video calls, Nextcloud offers complete control over your data while delivering enterprise-grade functionality. It's the perfect solution for individuals and teams who value privacy without sacrificing productivity.",
-                    "link": "https://nextcloud.core.example.com/",
-                    "links": {
-                        "android": "https://nextcloud.core.example.com/"
-                    },
-                    "styles": {
-                        "background-color": "#1C76C5",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Self-hosted productivity and collaboration.",
-                    "title": "Nextcloud"
-                },
-                {
-                    "id": "portainer",
-                    "description": "Portainer simplifies container management with an intuitive web interface for Docker and Kubernetes. Monitor resource usage, deploy stacks, manage images, and control your entire containerized infrastructure from a single dashboard. Whether you're running a homelab or managing production workloads, Portainer makes container orchestration accessible and efficient.",
-                    "link": "https://portainer.core.example.com/",
-                    "styles": {
-                        "background-color": "#2B7DE1",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Simplified container management.",
-                    "title": "Portainer"
-                }
-            ]
+          "id": "freshrss",
+          "description": "FreshRSS is a self-hosted RSS feed aggregator that helps you stay updated with your favorite websites and blogs. With support for thousands of feeds, advanced filtering, and a clean reading interface, FreshRSS organizes the web's content into a personalized news stream. Access your feeds from anywhere with mobile apps, browser extensions, and API support for third-party readers.",
+          "link": "https://rss.core.example.com/",
+          "links": {
+            "android": "https://rss.core.example.com/"
+          },
+          "styles": {
+            "background-color": "#C97B2F",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Self-hosted RSS feed aggregator.",
+          "title": "FreshRSS"
+        },
+        {
+          "id": "nextcloud",
+          "description": "Nextcloud provides a fully self-hosted cloud platform for file storage, collaboration, and communication. With features like file sync, calendar, contacts, document editing, and video calls, Nextcloud offers complete control over your data while delivering enterprise-grade functionality. It's the perfect solution for individuals and teams who value privacy without sacrificing productivity.",
+          "link": "https://nextcloud.core.example.com/",
+          "links": {
+            "android": "https://nextcloud.core.example.com/"
+          },
+          "styles": {
+            "background-color": "#1C76C5",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Self-hosted productivity and collaboration.",
+          "title": "Nextcloud"
+        },
+        {
+          "id": "portainer",
+          "description": "Portainer simplifies container management with an intuitive web interface for Docker and Kubernetes. Monitor resource usage, deploy stacks, manage images, and control your entire containerized infrastructure from a single dashboard. Whether you're running a homelab or managing production workloads, Portainer makes container orchestration accessible and efficient.",
+          "link": "https://portainer.core.example.com/",
+          "styles": {
+            "background-color": "#2B7DE1",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Simplified container management.",
+          "title": "Portainer"
         }
-    ]    
+      ]
+    }
+  ]
 }

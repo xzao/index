@@ -731,49 +731,6 @@ function get_sites($config) {
 
 }
 
-function get_widget($config, $widget_id) {
-
-    # check config
-    if( ! isset($config['groups']) ){
-        return null;
-    }
-
-    # check each group for widgets
-    foreach( $config['groups'] as $group ){
-        
-        # check group has widgets
-        if( ! isset($group['widgets']) || ! is_array($group['widgets']) ){
-            continue;
-        }
-
-        # check for matching widget id
-        foreach( $group['widgets'] as $widget ){
-            if( isset($widget['id']) && $widget['id'] === $widget_id ){
-                
-                # start with DEFAULT_WIDGET constant as base
-                $merged = DEFAULT_WIDGET;
-                
-                # merge config defaults on top
-                if( isset($config['defaults']['widget']) ){
-                    $merged = array_merge($merged, $config['defaults']['widget']);
-                }
-                
-                # merge widget-specific config on top
-                $merged = array_merge($merged, $widget);
-                
-                # return
-                return $merged;
-
-            }
-        }
-
-    }
-
-    # return
-    return null;
-
-}
-
 function get_title() {
 
     # check required
@@ -930,66 +887,6 @@ function print_debug($config, $sites) {
 #
 #   render[er]s
 #
-function calculate_widget_title_columns($site_count, $widget) {
-
-    # get filter columns to determine where widget should show
-    $filter_columns = isset($widget['filters']['columns']) && is_array($widget['filters']['columns']) 
-        ? $widget['filters']['columns'] 
-        : array(1, 2, 3, 4); # default: show on all
-
-    # calculate columns needed to fill empty space on each screen size
-    # only calculate if widget is allowed on that layout
-    
-    # small screens: 1 item per row (each site = 12 cols)
-    $s_items_per_row = 1;
-    $s_col_width = 12;
-    if( in_array(1, $filter_columns) ){
-        $s_empty_slots = ($s_items_per_row - ($site_count % $s_items_per_row)) % $s_items_per_row;
-        $s_cols = $s_empty_slots * $s_col_width;
-    } else {
-        $s_cols = 0;
-    }
-    
-    # medium screens: 2 items per row (each site = 6 cols)
-    $m_items_per_row = 2;
-    $m_col_width = 6;
-    if( in_array(2, $filter_columns) ){
-        $m_empty_slots = ($m_items_per_row - ($site_count % $m_items_per_row)) % $m_items_per_row;
-        $m_cols = $m_empty_slots * $m_col_width;
-    } else {
-        $m_cols = 0;
-    }
-    
-    # large screens: 3 items per row (each site = 4 cols)
-    $l_items_per_row = 3;
-    $l_col_width = 4;
-    if( in_array(3, $filter_columns) ){
-        $l_empty_slots = ($l_items_per_row - ($site_count % $l_items_per_row)) % $l_items_per_row;
-        $l_cols = $l_empty_slots * $l_col_width;
-    } else {
-        $l_cols = 0;
-    }
-    
-    # xl screens: 4 items per row (each site = 3 cols)
-    $xl_items_per_row = 4;
-    $xl_col_width = 3;
-    if( in_array(4, $filter_columns) ){
-        $xl_empty_slots = ($xl_items_per_row - ($site_count % $xl_items_per_row)) % $xl_items_per_row;
-        $xl_cols = $xl_empty_slots * $xl_col_width;
-    } else {
-        $xl_cols = 0;
-    }
-    
-    # return
-    return array(
-        's' => $s_cols,
-        'm' => $m_cols,
-        'l' => $l_cols,
-        'xl' => $xl_cols
-    );
-
-}
-
 function get_column_filter_classes($item) {
 
     # get filter columns if set
@@ -1022,62 +919,6 @@ function get_column_filter_classes($item) {
 
     # return
     return $hide_classes;
-
-}
-
-function render_widget_title_html($widget, $site_count, $html = '') {
-
-    # calculate dynamic column widths based on site count
-    $cols = calculate_widget_title_columns($site_count, $widget);
-
-    # if no columns needed (all slots filled), don't render
-    if( $cols['xl'] === 0 && $cols['l'] === 0 && $cols['m'] === 0 ){
-        return '';
-    }
-
-    # get display text - use widget text if set, otherwise use hostname
-    if( isset($widget['text']) && ! empty($widget['text']) ){
-        $display_text = $widget['text'];
-    } else {
-        # get hostname from server
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-        $hostname = explode(':', $host)[0];
-        
-        # clean hostname for display
-        $display_text = str_replace('www.', '', $hostname);
-    }
-
-    # get styles
-    $styles = isset($widget['styles']) ? collapse_styles_to_style($widget['styles']) : '';
-
-    # get column filter classes
-    $filter_classes = get_column_filter_classes($widget);
-
-    # calculate dynamic width percentages
-    $s_width = ($cols['s'] / 12) * 100;
-    $m_width = ($cols['m'] / 12) * 100;
-    $l_width = ($cols['l'] / 12) * 100;
-    $xl_width = ($cols['xl'] / 12) * 100;
-
-    # inject style tag for dynamic responsive widths
-    $html .= '<style>';
-    $html .= '.widget-title-dynamic { width: ' . $s_width . '% !important; }';
-    $html .= '@media (min-width: 751px) and (max-width: 1240px) { .widget-title-dynamic { width: ' . $m_width . '% !important; } }';
-    $html .= '@media (min-width: 1241px) and (max-width: 2799px) { .widget-title-dynamic { width: ' . $l_width . '% !important; } }';
-    $html .= '@media (min-width: 2800px) { .widget-title-dynamic { width: ' . $xl_width . '% !important; } }';
-    $html .= '</style>';
-
-    # html build - dynamic width based on site count
-    $html .= '<div class="col widget-title-dynamic' . $filter_classes . '">';
-    $html .= '    <div class="card widget-title" style="' . $styles . '">';
-    $html .= '        <div>';
-    $html .= '            <div class="widget-title-text">' . htmlspecialchars($display_text) . '</div>';
-    $html .= '        </div>';
-    $html .= '    </div>';
-    $html .= '</div>';
-
-    # return
-    return $html;
 
 }
 

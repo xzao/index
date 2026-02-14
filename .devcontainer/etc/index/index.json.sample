@@ -1,126 +1,113 @@
 {
-    "defaults" : {
-        "body" : {
-            "styles": {
-                "background-color": "#1D1D1D"
-            }
-        },
-        "page" : {
-            "styles": {
-                "background-color": "#1D1D1D"
-            }
-        }
+  "defaults": {
+    "body": {
+      "styles": {
+        "background-color": "#1D1D1D"
+      }
     },
-    "groups" : [
+    "page": {
+      "styles": {
+        "background-color": "#1D1D1D"
+      }
+    }
+  },
+  "groups": [
+    {
+      "id": "example",
+      "filters": {
+        "domains": [
+          "127.0.0.1",
+          "localhost"
+        ]
+      },
+      "image": {
+        "theme": "light"
+      },
+      "sites": [
         {
-            "id": "example",
-            "filters": {
-                "domains": [
-                    "127.0.0.1",
-                    "localhost"
-                ]
-            },            
-            "image": {
-                "theme": "light"
-            },
-            "sites": [
-                {
-                    "id": "adguard-home",
-                    "description": "AdGuard Home is a network-wide ad and tracker blocker that operates as a DNS server, filtering unwanted content before it reaches any device on your network. By blocking ads, trackers, and malicious domains at the DNS level, it protects privacy, reduces bandwidth usage, and speeds up browsing across all connected devices. With customizable blocklists, detailed query logs, and a clean dashboard, AdGuard Home provides complete visibility and control over what enters your network.",
-                    "link": "https:\/\/adguardhome.core.example.com\/",
-                    "styles": {
-                        "background-color": "#3A3633",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Network-wide ad and tracker blocking.",
-                    "title": "Adguard Home"
-                },
-                {
-                    "id": "beszel",
-                    "description": "Bezsel provides lightweight, privacy-friendly monitoring for your self-hosted services. By tracking system health, uptime, resource usage, and application responsiveness, Bezsel ensures that every component of your stack remains visible and predictable. With real-time metrics, alerts, and a clean dashboard interface, it brings clarity and oversight to even the most complex homelab environments.",
-                    "link": "https:\/\/beszel.core.example.com\/",
-                    "styles": {
-                        "background-color": "#2C2A28",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Monitoring made simple.",
-                    "title": "Beszel"
-                },
-                {
-                    "id": "gitlab",
-                    "description": "GitLab is an all-in-one DevOps platform that streamlines the entire software lifecycle—from planning and source control to CI/CD, monitoring, and deployment. By consolidating tools and workflows into a single interface, GitLab empowers teams to collaborate efficiently, deliver faster, and maintain complete visibility across every stage of development.",
-                    "link": "https:\/\/gitlab.core.example.com\/",
-                    "styles": {
-                        "background-color": "#E0D5C7",
-                        "color": "#2C2A28"
-                    },
-                    "tagline": "Complete DevOps in one platform.",
-                    "title": "GitLab"
-                },
-                {
-                    "id": "home-assistant",
-                    "description": "Home Assistant is a powerful, privacy focused home automation platform that puts you in full control of your smart devices. By unifying sensors, switches, lights, media players, and integrations into a single interface, Home Assistant empowers you to build automations, monitor your home, and create a seamless, intelligent living environment, all without relying on cloud services.",
-                    "link": "https:\/\/haos.core.example.com\/",
-                    "styles": {
-                        "background-color": "#4A4541",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Local automation platform for smart devices.",
-                    "title": "Home Assistant"
-                },
-                {
-                    "id": "proxmox",
-                    "description": "Proxmox VE provides an open-source platform for running and managing virtual machines and containers. It combines compute, storage, and networking into a unified interface, with support for clustering, high availability, and integrated backup, enabling efficient and reliable operation of virtualized.core.tructure.",
-                    "link": "https:\/\/proxmox.core.example.com\/",
-                    "styles": {
-                        "background-color": "#3A3633",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Virtualization and container management platform.",
-                    "title": "Proxmox VE"
-                },
-                {
-                    "id": "ubiquiti-unifi",
-                    "description": "UniFi OS provides a centralized platform for managing network.core.tructure and connected devices. It enables configuration and monitoring of gateways, switches, access points, and cameras through a single interface, delivering visibility, control, and security across the local network environment.",
-                    "link": "https:\/\/unifi.core.example.com\/",
-                    "links": {
-                        "android": "https:\/\/unifi.ui.com\/"
-                    },
-                    "styles": {
-                        "background-color": "#D2C6B2",
-                        "color": "#2C2A28"
-                    },
-                    "title": "Unifi",
-                    "tagline": "Unified network and device management."
-                },
-                {
-                    "id": "youtube",
-                    "description": "YouTube is the world's largest video-sharing platform where users can discover, watch, and share videos across countless topics. From entertainment and education to music and gaming, YouTube connects creators and viewers globally, offering endless content for every interest.",
-                    "link": "https:\/\/www.youtube.com\/",
-                    "links": {
-                        "android": "vnd.youtube://"
-                    },
-                    "styles": {
-                        "background-color": "#8B5555",
-                        "color": "#F5F5F5"
-                    },
-                    "tagline": "Watch, share, and discover videos worldwide.",
-                    "title": "YouTube"
-                }
-            ],
-            "widgets": [
-                {
-                    "id": "title",
-                    "filters": {
-                        "columns": [2, 3, 4]
-                    },
-                    "styles": {
-                        "background-color": "#2a2a2a",
-                        "color": "#F5F5F5"
-                    },
-                    "text": "example.com"
-                }
-            ]
+          "id": "adguard-home",
+          "description": "AdGuard Home is a network-wide ad and tracker blocker that operates as a DNS server, filtering unwanted content before it reaches any device on your network. By blocking ads, trackers, and malicious domains at the DNS level, it protects privacy, reduces bandwidth usage, and speeds up browsing across all connected devices. With customizable blocklists, detailed query logs, and a clean dashboard, AdGuard Home provides complete visibility and control over what enters your network.",
+          "link": "https://adguardhome.core.example.com/",
+          "styles": {
+            "background-color": "#3A3633",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Network-wide ad and tracker blocking.",
+          "title": "Adguard Home"
+        },
+        {
+          "id": "beszel",
+          "description": "Bezsel provides lightweight, privacy-friendly monitoring for your self-hosted services. By tracking system health, uptime, resource usage, and application responsiveness, Bezsel ensures that every component of your stack remains visible and predictable. With real-time metrics, alerts, and a clean dashboard interface, it brings clarity and oversight to even the most complex homelab environments.",
+          "link": "https://beszel.core.example.com/",
+          "styles": {
+            "background-color": "#2C2A28",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Monitoring made simple.",
+          "title": "Beszel"
+        },
+        {
+          "id": "gitlab",
+          "description": "GitLab is an all-in-one DevOps platform that streamlines the entire software lifecycle\u2014from planning and source control to CI/CD, monitoring, and deployment. By consolidating tools and workflows into a single interface, GitLab empowers teams to collaborate efficiently, deliver faster, and maintain complete visibility across every stage of development.",
+          "link": "https://gitlab.core.example.com/",
+          "styles": {
+            "background-color": "#E0D5C7",
+            "color": "#2C2A28"
+          },
+          "tagline": "Complete DevOps in one platform.",
+          "title": "GitLab"
+        },
+        {
+          "id": "home-assistant",
+          "description": "Home Assistant is a powerful, privacy focused home automation platform that puts you in full control of your smart devices. By unifying sensors, switches, lights, media players, and integrations into a single interface, Home Assistant empowers you to build automations, monitor your home, and create a seamless, intelligent living environment, all without relying on cloud services.",
+          "link": "https://haos.core.example.com/",
+          "styles": {
+            "background-color": "#4A4541",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Local automation platform for smart devices.",
+          "title": "Home Assistant"
+        },
+        {
+          "id": "proxmox",
+          "description": "Proxmox VE provides an open-source platform for running and managing virtual machines and containers. It combines compute, storage, and networking into a unified interface, with support for clustering, high availability, and integrated backup, enabling efficient and reliable operation of virtualized.core.tructure.",
+          "link": "https://proxmox.core.example.com/",
+          "styles": {
+            "background-color": "#3A3633",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Virtualization and container management platform.",
+          "title": "Proxmox VE"
+        },
+        {
+          "id": "ubiquiti-unifi",
+          "description": "UniFi OS provides a centralized platform for managing network.core.tructure and connected devices. It enables configuration and monitoring of gateways, switches, access points, and cameras through a single interface, delivering visibility, control, and security across the local network environment.",
+          "link": "https://unifi.core.example.com/",
+          "links": {
+            "android": "https://unifi.ui.com/"
+          },
+          "styles": {
+            "background-color": "#D2C6B2",
+            "color": "#2C2A28"
+          },
+          "title": "Unifi",
+          "tagline": "Unified network and device management."
+        },
+        {
+          "id": "youtube",
+          "description": "YouTube is the world's largest video-sharing platform where users can discover, watch, and share videos across countless topics. From entertainment and education to music and gaming, YouTube connects creators and viewers globally, offering endless content for every interest.",
+          "link": "https://www.youtube.com/",
+          "links": {
+            "android": "vnd.youtube://"
+          },
+          "styles": {
+            "background-color": "#8B5555",
+            "color": "#F5F5F5"
+          },
+          "tagline": "Watch, share, and discover videos worldwide.",
+          "title": "YouTube"
         }
-    ]
+      ]
+    }
+  ]
 }
