@@ -23,8 +23,10 @@
     define( 'DEFAULT_SITE', array(
         'classes'     => array(),
         'description' => '',
+        'layout'      => 's12 m6 l4 xl3',
         'tagline'     => '',
-        'title'       => ''
+        'title'       => '',
+        'type'        => 'default'
     ));
 
     # config default styles

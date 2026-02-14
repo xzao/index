@@ -924,11 +924,23 @@ function get_column_filter_classes($item) {
 
 function render_site_html($site, $html = '') {
 
-    # get column filter classes
-    $filter_classes = get_column_filter_classes($site);
+    # render by type
+    switch( $site['type'] ) {
+        case 'default':
+            return render_site_html_default($site, $html);
+        default:
+            return render_site_html_default($site, $html);
+    }
 
-    # html build - new column layout: s12 m6 l4 xl3 (1, 2, 3, 4 per row)
-    $html .= '<div class="col s12 m6 l4 xl3 ' . collapse_classes_to_class($site['classes']) . $filter_classes . '">';
+    # return
+    return $html;
+
+}
+
+function render_site_html_default($site, $html = '') {
+
+    # prepare html
+    $html .= '<div class="col ' . $site['layout'] . ' ' . collapse_classes_to_class($site['classes']) . get_column_filter_classes($site) . '">';
     $html .= '    <a href=' . $site['link'] . '>                        ';
     $html .= '        <div class="card" style="'. collapse_styles_to_style($site['styles']) . '">';
     $html .= '            <div class="card-image darken">';
