@@ -31,9 +31,12 @@ develop:
 	@php -S 0.0.0.0:8000 -t public
 
 install:
-	@if [ -f "/.dockerenv" ]; then \
+	@if [   -f '/.dockerenv' ]; then \
 		ln -sfn $(shell pwd)/.devcontainer/etc/index /etc/index; \
 	fi
+	@if [ ! -f '.devcontainer/etc/index/index.json' ]; then \
+		cp '.devcontainer/etc/index/index.json.sample' '.devcontainer/etc/index/index.json'; \
+	fi	
 	@if [ ! -d 'icons/vendor/selfhst-icons' ]; then \
 		mkdir -p 'icons/vendor' ; \
 		cd 'icons/vendor' && git clone --depth 1 --single-branch 'https://github.com/selfhst/icons' selfhst-icons; \

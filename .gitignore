@@ -1,3 +1,6 @@
+# dev
+.devcontainer/etc/index/index.json.sample
+
 # env
 .env*
 !.env.sample

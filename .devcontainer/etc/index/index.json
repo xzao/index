@@ -96,6 +96,7 @@
                 {
                     "id": "youtube",
                     "description": "YouTube is the world's largest video-sharing platform where users can discover, watch, and share videos across countless topics. From entertainment and education to music and gaming, YouTube connects creators and viewers globally, offering endless content for every interest.",
+                    "fill": 0,
                     "link": "https:\/\/www.youtube.com\/",
                     "links": {
                         "android": "vnd.youtube://"
@@ -106,19 +107,6 @@
                     },
                     "tagline": "Watch, share, and discover videos worldwide.",
                     "title": "YouTube"
-                }
-            ],
-            "widgets": [
-                {
-                    "id": "title",
-                    "filters": {
-                        "columns": [2, 3, 4]
-                    },
-                    "styles": {
-                        "background-color": "#2a2a2a",
-                        "color": "#F5F5F5"
-                    },
-                    "text": "project.REDACTED.link"
                 }
             ]
         }
