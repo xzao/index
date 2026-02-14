@@ -1,5 +1,5 @@
 # dev
-.devcontainer/etc/index/index.json.sample
+.devcontainer/etc/index/index.json
 
 # env
 .env*
