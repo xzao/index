@@ -26,85 +26,6 @@
     }
 }
 
-/* 1 Column Layout: 0-750px (Mobile) */
-@media only screen and (max-width: 750px) {
-    .col.s12,
-    .col.m6, .col.m12,
-    .col.l4, .col.l6, .col.l12,
-    .col.xl3, .col.xl4, .col.xl8 {
-        width: 100% !important;
-    }
-}
-
-/* 2 Column Layout: 751-1240px (Tablet) */
-@media only screen and (min-width: 751px) and (max-width: 1240px) {
-    .col.s12,
-    .col.m6,
-    .col.l4, .col.l6,
-    .col.xl3, .col.xl4 {
-        width: 50% !important;
-    }
-    .col.m12,
-    .col.l12,
-    .col.xl8 {
-        width: 100% !important;
-    }
-}
-
-/* 3 Column Layout: 1241-2799px (Desktop) */
-@media only screen and (min-width: 1241px) and (max-width: 2799px) {
-    .col.s12 {
-        width: 100% !important;
-    }
-    .col.m6 {
-        width: 50% !important;
-    }
-    .col.l4,
-    .col.xl3 {
-        width: 33.3333333333% !important;
-    }
-    .col.m12,
-    .col.l6,
-    .col.l12 {
-        width: 50% !important;
-    }
-    .col.xl4 {
-        width: 33.3333333333% !important;
-    }
-    .col.xl8 {
-        width: 66.6666666667% !important;
-    }
-}
-
-/* 4 Column Layout: 2800px+ (Large Desktop) */
-@media only screen and (min-width: 2800px) {
-    .col.s12 {
-        width: 100% !important;
-    }
-    .col.m6 {
-        width: 50% !important;
-    }
-    .col.l4 {
-        width: 33.3333333333% !important;
-    }
-    .col.xl3 {
-        width: 25% !important;
-    }
-    .col.m12,
-    .col.l6 {
-        width: 50% !important;
-    }
-    .col.l12 {
-        width: 100% !important;
-    }
-    .col.xl4 {
-        width: 33.3333333333% !important;
-    }
-    .col.xl8 {
-        width: 66.6666666667% !important;
-    }
-}
-
 body, html {
     min-width: 280px;
     overflow-y: scroll;
@@ -229,4 +150,44 @@ body.tablet .card .card-content {
 }
 .card.selected {
     box-shadow: none !important;
+}
+
+/* site type: title */
+.site-title {
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.site-title .site-title-text {
+    font-size: clamp(7px, 2vw, 18px);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    word-break: break-word;
+    max-width: 100%;
+}
+.site-title:hover .site-title-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+@media (max-width: 750px) {
+    .site-title {
+        min-height: 938px;
+    }
+    .site-title .site-title-text {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
 }

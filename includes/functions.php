@@ -928,6 +928,8 @@ function render_site_html($site, $html = '') {
     switch( $site['type'] ) {
         case 'default':
             return render_site_html_default($site, $html);
+        case 'title':
+            return render_site_html_title($site, $html);            
         default:
             return render_site_html_default($site, $html);
     }
@@ -958,6 +960,32 @@ function render_site_html_default($site, $html = '') {
     $html .= '            <div class="card-spacer"></div>';
     $html .= '        </div>';
     $html .= '    </a>';
+    $html .= '</div>';
+
+    # return
+    return $html;
+
+}
+
+function render_site_html_title($site, $html = '') {
+
+    # display text: site text, else title, else hostname
+    if ( isset($site['text']) && $site['text'] !== '' ) {
+        $display_text = $site['text'];
+    } elseif ( isset($site['title']) && $site['title'] !== '' ) {
+        $display_text = $site['title'];
+    } else {
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $display_text = str_replace('www.', '', explode(':', $host)[0]);
+    }
+
+    # prepare html
+    $html .= '<div class="col ' . $site['layout'] . ' ' . collapse_classes_to_class($site['classes']) . get_column_filter_classes($site) . '">';
+    $html .= '    <div class="card site-title" style="' . collapse_styles_to_style($site['styles']) . '">';
+    $html .= '        <div>';
+    $html .= '            <div class="site-title-text">' . htmlspecialchars($display_text) . '</div>';
+    $html .= '        </div>';
+    $html .= '    </div>';
     $html .= '</div>';
 
     # return
