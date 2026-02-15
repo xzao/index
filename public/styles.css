@@ -40,6 +40,7 @@
     .col.l3 { flex: 0 0 25%; max-width: 25%; }
     .col.l4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
     .col.l6 { flex: 0 0 50%; max-width: 50%; }
+    .col.l8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
 }
 @media (min-width: 2800px) {
     .col.xl3 { flex: 0 0 25%; max-width: 25%; }
