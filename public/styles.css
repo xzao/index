@@ -95,6 +95,10 @@ body.mobile .card .card-desc {
     text-decoration: none;
     color: inherit;
 }
+.col > .card {
+    flex: 1;
+    min-width: 0;
+}
 .col .card {
     width: 100%;
 }
@@ -191,7 +195,7 @@ body.tablet .card .card-content {
     border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: default;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-title .site-title-text {
