@@ -189,7 +189,8 @@ body.tablet .card .card-content {
 .site-title .site-title-text {
     font-size: clamp(7px, 2vw, 18px);
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.4);
+    color: inherit;
+    opacity: 0.6;
     text-transform: uppercase;
     letter-spacing: 3px;
     position: relative;
@@ -201,7 +202,7 @@ body.tablet .card .card-content {
     max-width: 100%;
 }
 .site-title:hover .site-title-text {
-    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
 }
 @media (max-width: 750px) {
     .site-title {
