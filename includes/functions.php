@@ -936,7 +936,9 @@ function render_site_html($site, $html = '') {
         case 'default':
             return render_site_html_default($site, $html);
         case 'title':
-            return render_site_html_title($site, $html);            
+            return render_site_html_title($site, $html);
+        case 'link':
+            return render_site_html_link($site, $html);
         default:
             return render_site_html_default($site, $html);
     }
@@ -996,6 +998,35 @@ function render_site_html_title($site, $html = '') {
     $html .= '</div>';
 
     # return
+    return $html;
+
+}
+
+function render_site_html_link($site, $html = '') {
+
+    # display text: site text, else title, else hostname
+    if ( isset($site['text']) && $site['text'] !== '' ) {
+        $display_text = $site['text'];
+    } elseif ( isset($site['title']) && $site['title'] !== '' ) {
+        $display_text = $site['title'];
+    } else {
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        $display_text = str_replace('www.', '', explode(':', $host)[0]);
+    }
+
+    $link_url = isset($site['link']) ? htmlspecialchars($site['link']) : '#';
+
+    # prepare html
+    $html .= '<div class="col ' . $site['layout'] . ' ' . collapse_classes_to_class($site['classes']) . get_column_filter_classes($site) . '">';
+    $html .= '    <a href="' . $link_url . '">';
+    $html .= '        <div class="card site-title" style="' . collapse_styles_to_style($site['styles']) . '">';
+    $html .= '            <div>';
+    $html .= '                <div class="site-title-text">' . htmlspecialchars($display_text) . '</div>';
+    $html .= '            </div>';
+    $html .= '        </div>';
+    $html .= '    </a>';
+    $html .= '</div>';
+
     return $html;
 
 }

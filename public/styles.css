@@ -87,6 +87,14 @@ body.mobile .card .card-desc {
     padding: 0px !important;
     display: flex;
 }
+.col > a {
+    display: block;
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+}
 .col .card {
     width: 100%;
 }
