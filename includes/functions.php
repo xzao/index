@@ -906,7 +906,7 @@ function get_column_filter_classes($item) {
         return '';
     }
 
-    # map column counts to custom hide classes
+    # map column counts to custom hide classes (same breakpoints as grid: s12 m6 l4 xl3)
     # 1 column = 0-750px, 2 columns = 751-1240px, 3 columns = 1241-2799px, 4 columns = 2800px+
     $hide_classes = '';
     

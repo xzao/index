@@ -23,7 +23,7 @@
     define( 'DEFAULT_SITE', array(
         'classes'     => array(),
         'description' => '',
-        'layout'      => 's12 m12 l6 xl4',
+        'layout'      => 's12 m6 l4 xl3',
         'tagline'     => '',
         'title'       => '',
         'type'        => 'default'

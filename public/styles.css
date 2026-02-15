@@ -26,6 +26,26 @@
     }
 }
 
+/*
+ * Grid breakpoints (override Materialize) - same as column filter:
+ * s = 0-750px (1 col), m = 751-1240px (2 col), l = 1241-2799px (3 col), xl = 2800px+ (4 col)
+ * s12 m6 l4 xl3 = 1, 2, 3, 4 columns per row
+ */
+.col.s12 { flex: 0 0 100%; max-width: 100%; }
+@media (min-width: 751px) {
+    .col.m6 { flex: 0 0 50%; max-width: 50%; }
+    .col.m12 { flex: 0 0 100%; max-width: 100%; }
+}
+@media (min-width: 1241px) {
+    .col.l3 { flex: 0 0 25%; max-width: 25%; }
+    .col.l4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col.l6 { flex: 0 0 50%; max-width: 50%; }
+}
+@media (min-width: 2800px) {
+    .col.xl3 { flex: 0 0 25%; max-width: 25%; }
+    .col.xl4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+}
+
 body, html {
     min-width: 280px;
     overflow-y: scroll;
