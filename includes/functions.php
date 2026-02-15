@@ -72,6 +72,13 @@ function fill_site_group($group, $site) {
             }
         }
         
+        # columns: site overrides group (no merge)
+        if( isset($site['filters']['columns']) ){
+            $merged_filters['columns'] = $site['filters']['columns'];
+        } elseif( isset($group_properties['filters']['columns']) ){
+            $merged_filters['columns'] = $group_properties['filters']['columns'];
+        }
+        
         $site['filters'] = $merged_filters;
     }
 
