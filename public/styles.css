@@ -221,3 +221,15 @@ body.tablet .card .card-content {
         letter-spacing: 2px;
     }
 }
+
+/* site type: link with image */
+.site-link-image .card-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+.site-link-image .card-image img {
+    padding: 20%;
+}

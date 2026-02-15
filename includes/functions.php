@@ -1004,25 +1004,33 @@ function render_site_html_title($site, $html = '') {
 
 function render_site_html_link($site, $html = '') {
 
-    # display text: site text, else title, else hostname
-    if ( isset($site['text']) && $site['text'] !== '' ) {
-        $display_text = $site['text'];
-    } elseif ( isset($site['title']) && $site['title'] !== '' ) {
-        $display_text = $site['title'];
-    } else {
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-        $display_text = str_replace('www.', '', explode(':', $host)[0]);
-    }
-
     $link_url = isset($site['link']) ? htmlspecialchars($site['link']) : '#';
+    $has_image = isset($site['image']['path']) && $site['image']['path'] !== '';
 
     # prepare html
     $html .= '<div class="col ' . $site['layout'] . ' ' . collapse_classes_to_class($site['classes']) . get_column_filter_classes($site) . '">';
     $html .= '    <a href="' . $link_url . '">';
-    $html .= '        <div class="card site-title" style="' . collapse_styles_to_style($site['styles']) . '">';
-    $html .= '            <div>';
-    $html .= '                <div class="site-title-text">' . htmlspecialchars($display_text) . '</div>';
-    $html .= '            </div>';
+    $html .= '        <div class="card site-title' . ($has_image ? ' site-link-image' : '') . '" style="' . collapse_styles_to_style($site['styles']) . '">';
+
+    if ( $has_image ) {
+        $html .= '            <div class="card-image darken">';
+        $html .= '                <img class="card-image-logo" src="' . get_site_image_data_uri($site) . '">';
+        $html .= '            </div>';
+    } else {
+        # display text: site text, else title, else hostname
+        if ( isset($site['text']) && $site['text'] !== '' ) {
+            $display_text = $site['text'];
+        } elseif ( isset($site['title']) && $site['title'] !== '' ) {
+            $display_text = $site['title'];
+        } else {
+            $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+            $display_text = str_replace('www.', '', explode(':', $host)[0]);
+        }
+        $html .= '            <div>';
+        $html .= '                <div class="site-title-text">' . htmlspecialchars($display_text) . '</div>';
+        $html .= '            </div>';
+    }
+
     $html .= '        </div>';
     $html .= '    </a>';
     $html .= '</div>';
