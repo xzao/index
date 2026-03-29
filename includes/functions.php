@@ -54,8 +54,17 @@ function fill_site_group($group, $site) {
     $group_properties = $group;
     unset($group_properties['sites']);
 
+    # preserve nested image for deep merge (site overrides group keys)
+    $group_image = isset($group_properties['image']) && is_array($group_properties['image']) ? $group_properties['image'] : array();
+    $site_image = isset($site['image']) && is_array($site['image']) ? $site['image'] : array();
+
     # fill site with group properties
     $site = array_merge($group_properties, $site);
+
+    # merge image deeply so group theme/type/etc. apply when site sets only name (or path)
+    if( !empty($group_image) || !empty($site_image) ){
+        $site['image'] = array_merge($group_image, $site_image);
+    }
 
     # merge filters deeply so both group and site filters apply
     if( isset($group_properties['filters']) && isset($site['filters']) ){
