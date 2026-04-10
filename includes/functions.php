@@ -597,12 +597,15 @@ function get_environment() {
     # get user agent
     $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 
-    # detect react native app by custom identifier
-    if( stripos($user_agent, 'IndexApp/ios') !== false ){
-        return 'ios';
-    }
-    if( stripos($user_agent, 'IndexApp/android') !== false ){
-        return 'android';
+    # detect mobile OS from Client Hints (WebView / Chromium send Sec-CH-UA-Platform)
+    if( isset($_SERVER['HTTP_SEC_CH_UA_PLATFORM']) && $_SERVER['HTTP_SEC_CH_UA_PLATFORM'] !== '' ){
+        $platform = strtolower(trim($_SERVER['HTTP_SEC_CH_UA_PLATFORM'], " \t\n\r\0\x0B\""));
+        if( stripos($platform, 'android') !== false ){
+            return 'android';
+        }
+        if( stripos($platform, 'ios') !== false || stripos($platform, 'ipados') !== false ){
+            return 'ios';
+        }
     }
 
     # check for custom header set by react native app
