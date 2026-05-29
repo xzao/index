@@ -18,7 +18,12 @@
     $page_style  = collapse_styles_to_style($page_styles);
 
     # theme
-    $theme_color = get_theme_color($config);
+    $theme_colors      = get_theme_colors($config);
+    $color_scheme      = get_color_scheme($config);
+    $theme_color       = get_theme_color($config);
+    $theme_color_h     = htmlspecialchars($theme_color, ENT_QUOTES, 'UTF-8');
+    $theme_color_light = htmlspecialchars($theme_colors['light'], ENT_QUOTES, 'UTF-8');
+    $theme_color_dark  = htmlspecialchars($theme_colors['dark'], ENT_QUOTES, 'UTF-8');
 
     # debug
     if( DEBUG ){ print_debug($config, $sites); }
@@ -32,10 +37,14 @@
         <title><?php echo TITLE; ?></title>
 
         <!-- meta[s] -->
-        <meta name="viewport"           content="width=device-width, initial-scale=1">
-        <meta name="description"        content="<?php echo DESCRIPTION; ?>">
-        <meta name="theme-color"        content="<?php echo htmlspecialchars($theme_color, ENT_QUOTES, 'UTF-8'); ?>">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport"              content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta name="description"           content="<?php echo DESCRIPTION; ?>">
+        <meta name="color-scheme"          content="<?php echo htmlspecialchars($color_scheme, ENT_QUOTES, 'UTF-8'); ?>">
+        <meta name="theme-color"           content="<?php echo $theme_color_h; ?>">
+        <meta name="theme-color"           content="<?php echo $theme_color_light; ?>" media="(prefers-color-scheme: light)">
+        <meta name="theme-color"           content="<?php echo $theme_color_dark; ?>" media="(prefers-color-scheme: dark)">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta http-equiv="Content-Type"    content="text/html; charset=UTF-8">
         <meta property="og:title"       content="<?php echo TITLE; ?>">
         <meta property="og:type"        content="website">
         <meta property="og:url"         content="<?php echo HOST; ?>">

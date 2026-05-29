@@ -53,6 +53,7 @@ function fill_site_group($group, $site) {
     # extract group properties
     $group_properties = $group;
     unset($group_properties['sites']);
+    unset($group_properties['theme']);
 
     # preserve nested image for deep merge (site overrides group keys)
     $group_image = isset($group_properties['image']) && is_array($group_properties['image']) ? $group_properties['image'] : array();
@@ -592,15 +593,66 @@ function get_page_styles($config) {
 
 }
 
-function get_theme_color($config) {
+function group_is_visible($group) {
 
-    # check config
-    if( isset($config['defaults']['theme']['color']) ){
-        $color = trim($config['defaults']['theme']['color']);
-        if( $color !== '' ){
-            return $color;
+    # apply group filters using the same rules as sites
+    $site = array(
+        'filters' => isset($group['filters']) && is_array($group['filters']) ? $group['filters'] : array()
+    );
+
+    $filtered = filter_sites_by_ip(array($site));
+    $filtered = filter_sites_by_domain($filtered);
+    $filtered = filter_sites_by_port($filtered);
+
+    # return
+    return ! empty($filtered);
+
+}
+
+function merge_theme_config($base, $overlay) {
+
+    $merged = $base;
+
+    # merge light/dark scheme colors
+    foreach( array('light', 'dark') as $scheme ){
+        if( isset($overlay[$scheme]) && is_array($overlay[$scheme]) ){
+            $merged[$scheme] = isset($merged[$scheme]) && is_array($merged[$scheme])
+                ? array_merge($merged[$scheme], $overlay[$scheme])
+                : $overlay[$scheme];
         }
     }
+
+    # return
+    return $merged;
+
+}
+
+function get_theme_config($config) {
+
+    # start with defaults
+    $theme = array();
+    if( isset($config['defaults']['theme']) && is_array($config['defaults']['theme']) ){
+        $theme = $config['defaults']['theme'];
+    }
+
+    # overlay matching group themes in config order
+    if( isset($config['groups']) && is_array($config['groups']) ){
+        foreach( $config['groups'] as $group ){
+            if( ! group_is_visible($group) ){
+                continue;
+            }
+            if( isset($group['theme']) && is_array($group['theme']) ){
+                $theme = merge_theme_config($theme, $group['theme']);
+            }
+        }
+    }
+
+    # return
+    return $theme;
+
+}
+
+function get_theme_fallback_color($config) {
 
     # fallback background color
     $page_styles = get_page_styles($config);
@@ -610,6 +662,115 @@ function get_theme_color($config) {
 
     # return
     return '#1d1d1d'; # fallback
+
+}
+
+function get_theme_scheme_color($theme, $scheme) {
+
+    if( ! isset($theme[$scheme]['color']) ){
+        return null;
+    }
+
+    $color = trim($theme[$scheme]['color']);
+    if( $color === '' ){
+        return null;
+    }
+
+    # return
+    return $color;
+
+}
+
+function get_theme_colors($config) {
+
+    $theme    = get_theme_config($config);
+    $fallback = get_theme_fallback_color($config);
+    $light    = get_theme_scheme_color($theme, 'light');
+    $dark     = get_theme_scheme_color($theme, 'dark');
+
+    # fill missing scheme from the other
+    if( $light === null ){
+        $light = $dark ?? $fallback;
+    }
+    if( $dark === null ){
+        $dark = $light ?? $fallback;
+    }
+
+    # return
+    return array(
+        'light' => $light,
+        'dark'  => $dark
+    );
+
+}
+
+function get_theme_color($config, $scheme = null) {
+
+    $colors = get_theme_colors($config);
+
+    if( $scheme === 'light' ){
+        return $colors['light'];
+    }
+    if( $scheme === 'dark' ){
+        return $colors['dark'];
+    }
+
+    # default fallback meta color prefers dark
+    return $colors['dark'];
+
+}
+
+function is_dark_color($color) {
+
+    # normalize
+    $color = trim($color);
+    if( $color === '' ){
+        return true;
+    }
+
+    # rgb()/rgba()
+    if( preg_match('/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/', $color, $matches) ){
+        $r = (int)$matches[1];
+        $g = (int)$matches[2];
+        $b = (int)$matches[3];
+    # hex shorthand
+    } elseif( preg_match('/^#([0-9a-f]{3})$/i', $color, $matches) ){
+        $r = hexdec(str_repeat($matches[1][0], 2));
+        $g = hexdec(str_repeat($matches[1][1], 2));
+        $b = hexdec(str_repeat($matches[1][2], 2));
+    # hex
+    } elseif( preg_match('/^#([0-9a-f]{6})$/i', $color, $matches) ){
+        $r = hexdec(substr($matches[1], 0, 2));
+        $g = hexdec(substr($matches[1], 2, 2));
+        $b = hexdec(substr($matches[1], 4, 2));
+    } else {
+        return true;
+    }
+
+    # relative luminance
+    $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+    return $luminance < 0.5;
+
+}
+
+function get_color_scheme($config) {
+
+    $theme = get_theme_config($config);
+    $has_light = get_theme_scheme_color($theme, 'light') !== null;
+    $has_dark  = get_theme_scheme_color($theme, 'dark') !== null;
+
+    if( $has_light && $has_dark ){
+        return 'dark light';
+    }
+    if( $has_dark ){
+        return 'dark';
+    }
+    if( $has_light ){
+        return 'light';
+    }
+
+    # derive from fallback color
+    return is_dark_color(get_theme_fallback_color($config)) ? 'dark' : 'light';
 
 }
 
