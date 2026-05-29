@@ -17,6 +17,9 @@
     $page_styles = get_page_styles($config);
     $page_style  = collapse_styles_to_style($page_styles);
 
+    # theme
+    $theme_color = get_theme_color($config);
+
     # debug
     if( DEBUG ){ print_debug($config, $sites); }
 
@@ -31,7 +34,7 @@
         <!-- meta[s] -->
         <meta name="viewport"           content="width=device-width, initial-scale=1">
         <meta name="description"        content="<?php echo DESCRIPTION; ?>">
-        <meta name="theme-color"        content="#1d1d1d">
+        <meta name="theme-color"        content="<?php echo htmlspecialchars($theme_color, ENT_QUOTES, 'UTF-8'); ?>">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta property="og:title"       content="<?php echo TITLE; ?>">
         <meta property="og:type"        content="website">

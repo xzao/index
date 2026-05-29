@@ -4,6 +4,9 @@
             "styles": {
                 "background-color": "#1C1C1E"
             }
+        },
+        "theme" : {
+            "color": "#1C1C1E"
         }
     },
     "groups" : [

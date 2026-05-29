@@ -592,6 +592,27 @@ function get_page_styles($config) {
 
 }
 
+function get_theme_color($config) {
+
+    # check config
+    if( isset($config['defaults']['theme']['color']) ){
+        $color = trim($config['defaults']['theme']['color']);
+        if( $color !== '' ){
+            return $color;
+        }
+    }
+
+    # fallback background color
+    $page_styles = get_page_styles($config);
+    if( isset($page_styles['background-color']) && $page_styles['background-color'] !== '' ){
+        return $page_styles['background-color'];
+    }
+
+    # return
+    return '#1d1d1d'; # fallback
+
+}
+
 function get_environment() {
 
     # get user agent
